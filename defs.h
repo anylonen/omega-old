@@ -71,8 +71,8 @@ on save and restore. */
    This might usually be "/usr/games/lib/omegalib/", for unix,
    or something like "c:\\games\\omega\\omegalib\\" for msdos */
 
-#define OMEGALIB "/usr/share/games/omega-rpg/"
-#define OMEGAVAR "/var/games/omega-rpg/"
+#define OMEGALIB "./lib/"
+#define OMEGAVAR "./lib/"
 
 /* TILEFILE is the name of the file you want to use for graphics tiles. You */
 /* aren't really free to use any file you want here. It should be the Omega */
