@@ -1,0 +1,2 @@
+omega-rpg: extra-license-file usr/share/games/omega-rpg/license.txt
+omega-rpg: non-standard-dir-perm var/games/omega-rpg/ 2775 != 0755

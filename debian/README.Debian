@@ -1,0 +1,3 @@
+The savegame format has changed somewhere between 0.90.4 and 0.90-pa9.  No
+conversion tool is available. If you want to continue with your old savegames,
+you will have to downgrade to 0.90.4.

@@ -1,0 +1,19 @@
+Source: omega-rpg
+Section: games
+Priority: optional
+Maintainer: Guus Sliepen <guus@debian.org>
+Standards-Version: 3.7.3
+Build-Depends: debhelper (>= 4.0.0), libncurses5-dev
+
+Package: omega-rpg
+Architecture: any
+Depends: ${shlibs:Depends} 
+Description: A text-based roguelike game
+ Omega is a complex rogue-style game of dungeon exploration. Unlike other such
+ games, there are a number of ways to "win", depending on various actions
+ taken during play. The ways you can get your name on the high score board
+ include becoming the highest ranked head of a guild, sect, college, etc., as
+ well as gaining the most points figured from possessions and experience. The
+ game (via the oracle) may impose some structure on your exploration, but you
+ need not follow all of the oracle's advice. There *is* a "total winner"
+ status, by the way.

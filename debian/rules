@@ -1,0 +1,66 @@
+#!/usr/bin/make -f
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+	$(MAKE)
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	rm -f build-stamp
+
+	$(MAKE) clean
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	mkdir -p debian/omega-rpg/usr/games
+	mkdir -p debian/omega-rpg/usr/share/games/omega-rpg
+
+	DESTDIR=`pwd`/debian/omega-rpg $(MAKE) install
+
+	mkdir -p debian/omega-rpg/usr/share/man/man6
+	cp docs/omega.6 debian/omega-rpg/usr/share/man/man6/omega-rpg.6
+
+	mkdir -p debian/omega-rpg/usr/share/lintian/overrides
+	cp debian/omega-rpg.overrides debian/omega-rpg/usr/share/lintian/overrides/omega-rpg
+
+# Build architecture-independent files here.
+binary-indep:
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installchangelogs
+	dh_installmenu
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	chgrp -R games `pwd`/debian/omega-rpg/usr/games/omega-rpg
+	chmod g+s `pwd`/debian/omega-rpg/usr/games/omega-rpg
+	mkdir -p `pwd`/debian/omega-rpg/var/games/omega-rpg
+	chmod 755 -R `pwd`/debian/omega-rpg/var
+	chgrp games `pwd`/debian/omega-rpg/var/games/omega-rpg
+	chmod g+ws `pwd`/debian/omega-rpg/var/games/omega-rpg
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

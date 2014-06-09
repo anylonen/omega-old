@@ -1,0 +1,107 @@
+omega-rpg (1:0.90-pa9-15) unstable; urgency=low
+
+  * Fix potential crash when a manastorm or ball spell occurs at the edge of a
+    map. Closes: #471919
+
+ -- Guus Sliepen <guus@debian.org>  Sun, 01 Jun 2008 17:27:29 +0200
+
+omega-rpg (1:0.90-pa9-14) unstable; urgency=low
+
+  * Allow parallel builds.
+
+ -- Guus Sliepen <guus@debian.org>  Fri, 04 Jan 2008 13:07:32 +0100
+
+omega-rpg (1:0.90-pa9-13) unstable; urgency=low
+
+  * Fix bitshifting in save_country() and save_level(). This probably fixes
+    loss of state in restored savegames.
+
+ -- Guus Sliepen <guus@debian.org>  Sat, 19 Aug 2006 18:11:28 +0000
+
+omega-rpg (1:0.90-pa9-12) unstable; urgency=low
+
+  * Fix enchanting negatively enchanted items. Closes: #246038
+  * Fix debit card creation if bank has been robbed. Closes: #246117
+
+ -- Guus Sliepen <guus@debian.org>  Tue, 27 Apr 2004 13:04:02 +0200
+
+omega-rpg (1:0.90-pa9-11) unstable; urgency=low
+
+  * Apply patch from Debian Security Team preventing buffer overflows in
+    command line and environment variable handling.
+
+ -- Guus Sliepen <guus@debian.org>  Fri,  7 Nov 2003 13:57:06 +0100
+
+omega-rpg (1:0.90-pa9-10) unstable; urgency=low
+
+  * Apply patch from Richard Braakman to fix disappearing items after
+    escaping from pickup command. Closes: #199627
+
+ -- Guus Sliepen <guus@debian.org>  Wed,  2 Jul 2003 14:41:27 +0200
+
+omega-rpg (1:0.90-pa9-9) unstable; urgency=low
+
+  * Don't cast result of getitem_prompt() to char prematurely. Closes: #161930
+
+ -- Guus Sliepen <guus@debian.org>  Sun, 22 Sep 2002 22:06:01 +0200
+
+omega-rpg (1:0.90-pa9-8) unstable; urgency=low
+
+  * Remove highscore and log when purging. Closes: #161410
+
+ -- Guus Sliepen <guus@debian.org>  Sun, 22 Sep 2002 15:00:03 +0200
+
+omega-rpg (1:0.90-pa9-7) unstable; urgency=low
+
+  * Added menu hints. Closes: #141850
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Tue,  9 Apr 2002 21:36:17 +0200
+
+omega-rpg (1:0.90-pa9-6) unstable; urgency=low
+
+  * Include patch from Richard Braakman. Closes: #134371
+  * Enforce correct permissions on hiscore file. Closes: #134372
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Mon, 18 Feb 2002 13:54:31 +0100
+
+omega-rpg (1:0.90-pa9-5) unstable; urgency=low
+
+  * Added Richard Braakman's patches. Closes: #112851, #130539
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Mon, 28 Jan 2002 22:01:38 +0100
+
+omega-rpg (1:0.90-pa9-4) unstable; urgency=low
+
+  * When resurrecting guards access maps.dat instead of city.dat.
+    Closes: #131042
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Sat, 26 Jan 2002 23:03:16 +0100
+
+omega-rpg (1:0.90-pa9-3) unstable; urgency=low
+
+  * Spelling fixes for description. Closes: #125203
+  * Actually install lintian overrides file.
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Fri, 21 Dec 2001 19:05:59 +0100
+
+omega-rpg (1:0.90-pa9-2) unstable; urgency=low
+
+  * Added entry to Debian's menu system.
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Wed, 12 Dec 2001 23:48:11 +0100
+
+omega-rpg (1:0.90-pa9-1) unstable; urgency=low
+
+  * New upstream release.
+  * Set WIZARD to "root". Closes: #112404
+  * Added lintian overrides.
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Sun, 16 Sep 2001 23:50:00 +0200
+
+omega-rpg (0.90.4-1) unstable; urgency=low
+
+  * Initial Release. Closes: #89200
+  * Changed library directory to /usr/share/games/omega-rpg for FHS
+    compliance, seperated highscore and log file to /var/games/omega-rpg.
+
+ -- Guus Sliepen <guus@sliepen.warande.net>  Sun, 11 Mar 2001 22:57:08 +0100
