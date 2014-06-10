@@ -11,7 +11,7 @@ OFLAGS = -O2 -pipe
 ### it will fail if none of them are defined.  If you do uncomment
 ### one, make sure you comment out the other definition of CFLAGS lower down
 
-CFLAGS = -Wall $(OFLAGS) -DBSD # -ansi
+CFLAGS = -Wall $(OFLAGS) -DBSD -Ivendor/luajit/src # -ansi
 #CFLAGS = -DSYSV $(OFLAGS)
 #CFLAGS = -DMSDOS $(OFLAGS)
 #CFLAGS = -DAMIGA $(OFLAGS)
@@ -30,7 +30,7 @@ CC = gcc
 #LIBS = -lcurses -ltermlib
 #LIBS = -lpdcurses
 #Linux links in term?? automatically.
-LIBS = -lncurses
+LIBS = -lluajit -lncurses
 
 ### uncomment to use "op-curses" package
 #OPDEF = -DUSE_OPCURSES
@@ -39,6 +39,7 @@ LIBS = -lncurses
 ### uncomment to compile using opcurses GTK+ driver
 #CPPFLAGS = `gtk-config --cflags` -DUSE_OPCURSES
 #LDFLAGS = `gtk-config --libs`
+LDFLAGS = -Lvendor/luajit/src
 
 #################### that's it for changing the Makefile ####################
 
