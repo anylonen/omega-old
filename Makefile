@@ -11,7 +11,7 @@ OFLAGS = -O2 -pipe
 ### it will fail if none of them are defined.  If you do uncomment
 ### one, make sure you comment out the other definition of CFLAGS lower down
 
-CFLAGS = -Wall $(OFLAGS) -DBSD -Ivendor/luajit/src # -ansi
+CFLAGS = -Wall $(OFLAGS) -DBSD -Ivendor/luajit/src/ # -ansi
 #CFLAGS = -DSYSV $(OFLAGS)
 #CFLAGS = -DMSDOS $(OFLAGS)
 #CFLAGS = -DAMIGA $(OFLAGS)
@@ -22,7 +22,8 @@ CFLAGS = -Wall $(OFLAGS) -DBSD -Ivendor/luajit/src # -ansi
 CPP = gcc -E
 
 ### define a compiler
-CC = gcc
+# CC = gcc
+CC = clang
 
 ### Select one of the following that is appropriate for your curses...
 ### Comment ALL of them out if you are using opcurses

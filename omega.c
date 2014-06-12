@@ -3,7 +3,7 @@
 /* this file includes main() and some top-level functions */
 /* omega.c */
 
-#include "luajit.h"
+#include <luajit.h>
 
 #include "glob.h"
 
