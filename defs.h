@@ -5,11 +5,12 @@
 /* omega will NOT function unless the implementor sets the appropriate
 definitions in the following section. */
 
-/* Transferred structs */
+/* Transferred typedefs */
+#include "symbol.h"
+
 #include "bank_account.h"
 #include "room.h"
 #include "spell.h"
-
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
@@ -1694,13 +1695,6 @@ enum map_identifier {
  * in the map.c section. */
 struct map_type;
 typedef struct map_type map;
-
-#if defined(MSDOS_SUPPORTED_ANTIQUE) || defined(AMIGA)
-typedef short Symbol;
-#else
-typedef chtype Symbol;
-#endif
-
 
 /* structure definitions */
 

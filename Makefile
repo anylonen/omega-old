@@ -11,7 +11,7 @@ OFLAGS = -O2 -pipe
 ### it will fail if none of them are defined.  If you do uncomment
 ### one, make sure you comment out the other definition of CFLAGS lower down
 
-CFLAGS = -Wall $(OFLAGS) -DBSD -Ivendor/luajit/src/ # -ansi
+CFLAGS = -Wall $(OFLAGS) -DBSD -Ivendor/luajit/src # -ansi
 #CFLAGS = -DSYSV $(OFLAGS)
 #CFLAGS = -DMSDOS $(OFLAGS)
 #CFLAGS = -DAMIGA $(OFLAGS)
@@ -19,7 +19,8 @@ CFLAGS = -Wall $(OFLAGS) -DBSD -Ivendor/luajit/src/ # -ansi
 ### CPP should contain the command to run the C preprocessor.
 #CPP = cc -E
 #CPP = /lib/cpp
-CPP = gcc -E
+# CPP = gcc -E
+CPP = clang -E
 
 ### define a compiler
 # CC = gcc
