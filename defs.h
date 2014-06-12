@@ -8,7 +8,7 @@ definitions in the following section. */
 /* Transferred structs */
 #include "bank_account.h"
 #include "room.h"
-
+#include "spell.h"
 
 
 /*--------------------------USER DEFINITIONS--------------------------*/
@@ -1703,13 +1703,6 @@ typedef chtype Symbol;
 
 
 /* structure definitions */
-
-struct spell {
-  char known;
-  char id;
-  char powerdrain;
-} ;
-
 
 struct monster {
   struct objectlist *possessions;
