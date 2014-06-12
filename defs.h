@@ -5,6 +5,12 @@
 /* omega will NOT function unless the implementor sets the appropriate
 definitions in the following section. */
 
+/* Transferred structs */
+#include "bank_account.h"
+#include "room.h"
+
+
+
 /*--------------------------USER DEFINITIONS--------------------------*/
 
 /* Some minor quote changes...  This #define should be removed after some
@@ -1697,24 +1703,6 @@ typedef chtype Symbol;
 
 
 /* structure definitions */
-
-struct bank_account
-{
-  short player;
-  long balance;
-  long number;
-  char *password;
-  struct bank_account * next_account;
-};
-typedef struct bank_account bank_account;
-
-struct room {
-  int lighted; 
-  int left,right,top,bottom;
-  int rsi; /* index into roomname switch */
-};
-
-
 
 struct spell {
   char known;
