@@ -10,6 +10,7 @@ definitions in the following section. */
 #include "environment.h"
 #include "game_progress.h"
 #include "attack.h"
+#include "talk.h"
 
 #include "bank_account.h"
 #include "room.h"
@@ -934,45 +935,6 @@ would usually occur. A monster's special function may be an extra move,
 for example. */
 
 #define M_NO_OP -1
-
-/* talk functions */
-#define M_TALK_STUPID 101
-#define M_TALK_SILENT 102
-#define M_TALK_HUNGRY 103
-#define M_TALK_GREEDY 104
-#define M_TALK_TITTER 105
-#define M_TALK_MAN 106
-#define M_TALK_ROBOT 107
-#define M_TALK_EVIL 108
-#define M_TALK_BURBLE 109
-#define M_TALK_SLITHY 110
-#define M_TALK_MIMSY 111
-#define M_TALK_SEDUCTOR 112
-#define M_TALK_MP 113
-#define M_TALK_IM 114
-#define M_TALK_GUARD 115
-#define M_TALK_GHOST 116
-#define M_TALK_HINT 117
-#define M_TALK_BEG 118
-#define M_TALK_EF 119
-#define M_TALK_GF 120
-#define M_TALK_MORGON 121
-#define M_TALK_LB 122
-#define M_TALK_DEMONLOVER 123
-#define M_TALK_ASSASSIN 124
-#define M_TALK_NINJA 125
-#define M_TALK_THIEF 126
-#define M_TALK_MERCHANT 127
-#define M_TALK_HORSE 128
-#define M_TALK_PARROT 129
-#define M_TALK_ANIMAL 130
-#define M_TALK_HYENA 131
-#define M_TALK_SERVANT 132
-#define M_TALK_SCREAM 133
-#define M_TALK_DRUID 134
-#define M_TALK_ARCHMAGE 135
-#define M_TALK_PRIME 136
-#define M_TALK_MAHARAJA 137
 
 /* ability functions */
 #define M_SP_SURPRISE 201
