@@ -28,4 +28,10 @@ struct objectlist
     struct objectlist* next;
 };
 
+typedef struct object objtype;
+typedef objtype *pob;
+
+typedef struct objectlist oltype;
+typedef oltype *pol;
+
 #endif

@@ -1438,16 +1438,6 @@ enum map_identifier {
 struct map_type;
 typedef struct map_type map;
 
-/* structure definitions */
-
-/* random typedef's */
-
-typedef struct object objtype;
-typedef objtype *pob;
-
-typedef struct objectlist oltype;
-typedef oltype *pol;
-
 #ifdef SAVE_LEVELS
 plv msdos_changelevel();
 #endif
