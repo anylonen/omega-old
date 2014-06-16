@@ -27,4 +27,7 @@ struct level
     int level_length; /* length of current level */
 };
  
+typedef struct level levtype;
+typedef levtype *plv;
+
 #endif
