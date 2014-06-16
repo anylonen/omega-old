@@ -13,6 +13,7 @@ definitions in the following section. */
 #include "spell.h"
 #include "monster.h"
 #include "object.h"
+#include "terrain.h"
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
@@ -1560,14 +1561,6 @@ struct map_type;
 typedef struct map_type map;
 
 /* structure definitions */
-
-/* terrain locations */
-struct terrain {
-  Symbol base_terrain_type;
-  Symbol current_terrain_type;
-  char aux;
-  char status;
-};
 
 /* dungeon locations */
 struct location {
