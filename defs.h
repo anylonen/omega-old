@@ -1357,16 +1357,7 @@ for example. */
 /* leave head room for extra traps: 114, 115, 116, 117, 118, 119, 120 */
 
 /* random sites */
-#define L_CHAOS 121
-#define L_WATER 122
-#define L_LAVA 123
-#define L_ABYSS 124
-#define L_MAGIC_POOL 125
-#define L_PORTCULLIS_TRAP 126
-#define L_PORTCULLIS 127
-#define L_STATUE_WAKE 128
-#define L_HEDGE 129
-#define L_RUBBLE 130
+#include "sites.h"
 
 #define L_DROP_EVERY_PORTCULLIS 131 /* tested, but never set */
 
