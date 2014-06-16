@@ -463,102 +463,7 @@ on save and restore. */
 #define RS_PENTAGRAM ROOMBASE+28
 #define RS_OMEGA_DAIS ROOMBASE+29
 
-#if defined(MSDOS_SUPPORTED_ANTIQUE) || defined(AMIGA)
-#define CLR(fg)		COL_##fg
-#define CLRS(fg,bg)	COL_##fg|COL_BG_##bg
-#endif
-
-#if defined(MSDOS_SUPPORTED_ANTIQUE)
-
-#define COL_BLACK 0x0000
-#define COL_BLUE 0x0100
-#define COL_GREEN 0x0200
-#define COL_CYAN 0x0300
-#define COL_RED 0x0400
-#define COL_PURPLE 0x0500
-#define COL_BROWN 0x0600
-#define COL_WHITE 0x0700
-#define COL_GREY 0x0800
-#define COL_LIGHT_BLUE 0x0900
-#define COL_LIGHT_GREEN 0x0a00
-#define COL_LIGHT_CYAN 0x0b00
-#define COL_LIGHT_RED 0x0c00
-#define COL_LIGHT_PURPLE 0x0d00
-#define COL_YELLOW 0x0e00
-#define COL_BRIGHT_WHITE 0x0f00
-#define COL_BG_BLACK 0x0000
-#define COL_BG_BLUE 0x1000
-#define COL_BG_GREEN 0x2000
-#define COL_BG_CYAN 0x3000
-#define COL_BG_RED 0x4000
-#define COL_BG_PURPLE 0x5000
-#define COL_BG_BROWN 0x6000
-#define COL_BG_WHITE 0x7000
-#define COL_FG_BLINK 0x8000
-
-#elif defined(AMIGA)
-
-#include <curses210.h>
-
-/* unfortunately, this curses package only implements 8 colours... */
-
-#define COL_WHITE 0x0100
-#define COL_BLACK COL_WHITE
-/* this assumes that all things with black fg have white bg */
-#define COL_BROWN 0x0200
-#define COL_YELLOW 0x0300
-#define COL_GREY 0x0400
-#define COL_GREEN 0x0500
-#define COL_BLUE 0x0600
-#define COL_RED 0x0700
-#define COL_CYAN 0x0500		/* = green */
-#define COL_PURPLE 0x0700	/* = red */
-#define COL_LIGHT_BLUE 0x0600	/* = blue */
-#define COL_LIGHT_GREEN 0x0500	/* = green */
-#define COL_LIGHT_CYAN 0x0500	/* = green */
-#define COL_LIGHT_RED 0x0700	/* = red */
-#define COL_LIGHT_PURPLE 0x0100	/* = white */
-#define COL_BRIGHT_WHITE 0x0100	/* = white */
-#define COL_BG_BLACK 0x0000
-#define COL_BG_WHITE (A_REVERSE<<8)
-#define COL_BG_GREEN (A_REVERSE<<8)
-#define COL_BG_CYAN (A_REVERSE<<8)
-#define COL_BG_RED (A_REVERSE<<8)
-#define COL_BG_PURPLE (A_REVERSE<<8)
-#define COL_BG_BROWN (A_REVERSE<<8)
-#define COL_BG_BLUE (A_REVERSE<<8)
-#define COL_FG_BLINK 0x0000	/* not implemented :( */
-/* WDT: thank goodness for that lack of implementation. */
-
-#else /* !MSDOS_ANTIQUE && !AMIGA */
-
-# ifdef USE_OPCURSES
-#  include "../opcurses/curses.h"
-# else
-#  include <curses.h>
-# endif
-
-# define COL_FG_BLINK A_BLINK
-
-# ifdef COLOR_PAIR
-
-#  ifdef OMEGA_CLRGEN
-#   define CLR(fg)	OMEGA_CLRGEN1 fg
-#   define CLRS(fg, bg)	OMEGA_CLRGEN2 fg bg
-#  else
-#   include "clrgen.h"
-#   define CLR(fg)	CLR_##fg##_BLACK
-#   define CLRS(fg, bg)	CLR_##fg##_##bg
-#  endif
-
-# else /* COLOR_PAIR */
-
-#  define CLR(fg)		0
-#  define CLRS(fg,bg)	0
-
-# endif /* COLOR_PAIR */
-#endif /* !MSDOS_ANTIQUE && !AMIGA */
-
+/* Colors */
 /* objects, locations, and terrain; characters to draw */
 #define NULL_ITEM '\0'
 #define SPACE (' ' | CLR(WHITE))
@@ -601,34 +506,7 @@ on save and restore. */
 #define ARTIFACT ('&' | CLR(YELLOW))
 
 /* TERRAIN TYPES */
-#define PLAINS ('-' | CLR(LIGHT_GREEN))
-#define TUNDRA ('_' | CLR(GREY))
-#define ROAD ('.' | CLR(BROWN))
-#define MOUNTAINS ('^' | CLR(GREY))
-#define PASS ('v' | CLR(BROWN))
-#define RIVER ('~' | CLR(BLUE))
-#define CITY ('O' | CLR(WHITE))
-#define VILLAGE ('o' | CLR(WHITE))
-#define FOREST ('(' | CLR(LIGHT_GREEN))
-#define JUNGLE (')' | CLR(GREEN))
-#define SWAMP ('=' | CLR(GREEN))
-#define VOLCANO ('!' | CLR(RED))
-#define CASTLE ('%' | CLR(GREY))
-#define TEMPLE ('X' | CLR(BROWN))
-#define CAVES ('*' | CLRS(BLACK,BROWN))
-#define DESERT ('\"' | CLR(YELLOW))
-#define CHAOS_SEA ('+' | CLR(LIGHT_PURPLE))
-#define STARPEAK ('|' | CLR(LIGHT_BLUE))
-#define DRAGONLAIR ('$' | CLR(BROWN))
-#define MAGIC_ISLE ('&' | CLR(PURPLE))
-#define PALACE ('K' | CLR(PURPLE))
-
-#define CHAIR ('5' | CLR(BROWN))
-#define SAFE ('3' | CLR(GREY))
-#define FURNITURE ('2' | CLR(BROWN))
-#define BED ('9' | CLR(CYAN))
-
-/* wow, all characters used! */
+#include "terrain_types.h"
 
 /* total number of editable stats */
 #define NUMSTATS 11
