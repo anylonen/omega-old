@@ -19,4 +19,7 @@ struct location
     struct monster* creature;
 };
 
+typedef struct location loctype;
+typedef loctype *plc;
+
 #endif

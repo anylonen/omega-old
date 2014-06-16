@@ -1442,9 +1442,6 @@ typedef struct map_type map;
 
 /* random typedef's */
 
-typedef struct location loctype;
-typedef loctype *plc;
-
 typedef struct level levtype;
 typedef levtype *plv;
 
