@@ -10,6 +10,7 @@
 #ifndef INCLUDED_GLOB_H
 #define INCLUDED_GLOB_H
 
+#include <string.h>
 #include "defs.h"
 
 #include "extern.h"
