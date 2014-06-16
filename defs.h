@@ -15,6 +15,7 @@ definitions in the following section. */
 #include "object.h"
 #include "terrain.h"
 #include "location.h"
+#include "level.h"
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
@@ -173,9 +174,6 @@ on save and restore. */
 #define CASHVALUE -2
 
 /* moderately arbitrary but probably cannot be easily changed */
-    /*#define MAXWIDTH 64*/
-#define MAXWIDTH 128
-#define MAXLENGTH 64
 #define SMALLSCREEN_LENGTH 16
 #define SMALLSCREEN_WIDTH 64
 
@@ -1563,26 +1561,6 @@ typedef struct map_type map;
 
 /* structure definitions */
 
-struct level {
-  char depth; /* which level is this */
-  struct level *next; /* pointer to next level in dungeon */
-#ifndef SAVE_LEVELS
-  struct location site[MAXWIDTH][MAXLENGTH]; /* dungeon data */
-#else
-  /* Over 64K worth of data! */
-  struct location *site[MAXWIDTH]; /* dungeon data */
-#endif
-  char generated; /* has the level been made (visited) yet? */
-  char numrooms; /* number of rooms on level */
-  char tunnelled; /* amount of tunnelling done on this level */
-  struct monsterlist *mlist; /* List of monsters on level */
-  int environment; /* where kind of level is this? */
-  int last_visited; /* time player was last on this level */
-  int level_width; /* width of current level */
-  int level_length; /* length of current level */
-};
-
- 
 /* random typedef's */
 
 typedef struct monsterlist mltype;
