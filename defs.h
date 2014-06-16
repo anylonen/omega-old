@@ -14,6 +14,7 @@ definitions in the following section. */
 #include "monster.h"
 #include "object.h"
 #include "terrain.h"
+#include "location.h"
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
@@ -1561,20 +1562,6 @@ struct map_type;
 typedef struct map_type map;
 
 /* structure definitions */
-
-/* dungeon locations */
-struct location {
-  unsigned char p_locf; /* function executed when moved on */
-  unsigned char lstatus; /* seen,stopsrun,lit,secret, */
-  unsigned char roomnumber; /* so room can be named */
-  Symbol locchar; /* terrain type */
-  Symbol showchar; /*char instantaneously drawn for site */
-  int aux; /* signifies various things */
-  unsigned char buildaux; /* used in constructing level */
-  struct objectlist *things; 
-  struct monster *creature;
- };
-
 
 struct level {
   char depth; /* which level is this */
