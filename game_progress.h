@@ -1,0 +1,34 @@
+#ifndef GAME_PROGRESS_H
+#define GAME_PROGRESS_H
+
+/* Overall Game Progress Vector Bits */
+/* Long had BETTER have at least 32 bits.... */
+#define SPOKE_TO_DRUID		0x1
+#define COMPLETED_CAVES		0x2
+#define COMPLETED_SEWERS	0x4
+#define COMPLETED_CASTLE	0x8
+#define COMPLETED_ASTRAL	0x10
+#define COMPLETED_VOLCANO	0x20
+#define KILLED_DRAGONLORD	0x40
+#define KILLED_EATER		0x80
+#define KILLED_LAWBRINGER	0x100
+#define COMPLETED_CHALLENGE	0x200
+#define SOLD_CONDO		0x400
+#define FAST_MOVE		0x800
+#define SKIP_PLAYER		0x1000
+#define SKIP_MONSTERS		0x2000
+#define MOUNTED			0x4000
+#define SUPPRESS_PRINTING	0x8000
+#define LOST			0x10000
+#define ARENA_MODE		0x20000
+#define CHEATED			0x40000
+#define BANK_BROKEN		0x80000
+#define CLUB_MEMBER		0x100000
+#define PREPARED_VOID		0x200000
+#define DESTROYED_ORDER		0x400000
+#define GAVE_STARGEM		0x800000
+#define ATTACKED_ORACLE		0x1000000
+#define UNDEAD_GUARDS		0x2000000
+    /* 26 so far... */
+
+#endif
