@@ -10,10 +10,13 @@
 #ifndef INCLUDED_GLOB_H
 #define INCLUDED_GLOB_H
 
+#include "vendor/luajit/src/luajit.h"
 #include <string.h>
 #include "defs.h"
 
 #include "extern.h"
+
+extern lua_State* lua_state;
 
 #ifdef DEBUG /* Added by DG, naturally. */
 /* Debug log file */

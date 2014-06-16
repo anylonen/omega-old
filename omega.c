@@ -3,8 +3,6 @@
 /* this file includes main() and some top-level functions */
 /* omega.c */
 
-#include "vendor/luajit/src/luajit.h"
-
 #include "glob.h"
 
 #if !defined(MSDOS_SUPPORTED_ANTIQUE)
@@ -251,204 +249,245 @@ void signalquit(int ignore)
 {
   quit();
 }
-
-int main(int argc, char *argv[])
+void bail(lua_State* L, char* error_message)
 {
-  int continuing = 0;
-  int count;
-  int scores_only = 0;
-  int i;
+    fprintf(stderr, "\nFATAL ERROR:\n %s: %s\n\n", error_message, lua_tostring(L, -1));
+}
 
+int main(int argc, char* argv[])
+{
+    int continuing = 0;
+    int count;
+    int scores_only = 0;
+    int i;
+    lua_State* lua_state = luaL_newstate();
+    luaL_openlibs(lua_state);
+
+    if ( luaL_loadfile(lua_state, "omega.lua"))
+    {
+        bail(lua_state, "Cannot open omega.lua");
+    }
+
+    if ( lua_pcall(lua_state, 0, 0, 0 ))
+    {
+        bail(lua_state, "Cannot pcall omega.lua");
+    }
 #ifndef NOGETOPT
-  while(( i= getopt( argc, argv, "dsh")) != -1)
-  {
-     switch (i)
-     {
-       case 'd':
-#ifdef DEBUG
-         DG_debug_flag++;
-#endif
-         break;
-       case 's':
-         scores_only = 1;
-         break;
-       case 'h':
-#ifdef DEBUG
-         printf("Usage: omega [-shd] [savefile]\n");
-#else
-         printf("Usage: omega [-sh] [savefile]\n");
-#endif
-         printf("Options:\n");
-         printf("  -s  Display high score list\n");
-         printf("  -h  Display this message\n");
-#ifdef DEBUG
-         printf("  -d  Enable debug mode\n");
-#endif
-         exit(0);
-         break;
-       case '?':
-         /* error parsing args... ignore? */
-         printf("'%c' is an invalid option, ignoring\n", optopt );
-         break;
-     }
-  }
 
-  if (optind >= argc ) {
-    /* no save file given */
+    while (( i = getopt( argc, argv, "dsh")) != -1)
+    {
+        switch (i)
+        {
+        case 'd':
+#ifdef DEBUG
+            DG_debug_flag++;
+#endif
+            break;
+
+        case 's':
+            scores_only = 1;
+            break;
+
+        case 'h':
+#ifdef DEBUG
+            printf("Usage: omega [-shd] [savefile]\n");
+#else
+            printf("Usage: omega [-sh] [savefile]\n");
+#endif
+            printf("Options:\n");
+            printf("  -s  Display high score list\n");
+            printf("  -h  Display this message\n");
+#ifdef DEBUG
+            printf("  -d  Enable debug mode\n");
+#endif
+            exit(0);
+            break;
+
+        case '?':
+            /* error parsing args... ignore? */
+            printf("'%c' is an invalid option, ignoring\n", optopt );
+            break;
+        }
+    }
+
+    if (optind >= argc )
+    {
+        /* no save file given */
 #if defined( BSD ) || defined( SYSV )
-    sprintf( SaveFileName, "Omega%d", getuid() );
+        sprintf( SaveFileName, "Omega%d", getuid() );
 #else
-    strcpy( SaveFileName,"Omega");
+        strcpy( SaveFileName, "Omega");
 #endif
-  } else {
-    /* savefile given */
-    continuing = 1;
-    strncpy(SaveFileName,argv[optind],sizeof(SaveFileName)-1);
-  }
+    }
 
-#else 
-  /* alternate code for people who don't support getopt() -- no enhancement */
-  if (argc ==2) {
-    strncpy( SaveFileName, argv[1], sizeof(SaveFileName)-1);
-    continuing = 1;
-  } else {
-    strcpy( SaveFileName,"Omega");
-  }
+    else
+    {
+        /* savefile given */
+        continuing = 1;
+        strncpy(SaveFileName, argv[optind], sizeof(SaveFileName) - 1);
+    }
+
+#else
+
+    /* alternate code for people who don't support getopt() -- no enhancement */
+    if (argc == 2)
+    {
+        strncpy( SaveFileName, argv[1], sizeof(SaveFileName) - 1);
+        continuing = 1;
+    }
+
+    else
+    {
+        strcpy( SaveFileName, "Omega");
+    }
+
 #endif
-
-  /* always catch ^c and hang-up signals */
-
+    /* always catch ^c and hang-up signals */
 #ifdef SIGINT
-  signal(SIGINT,signalquit);
+    signal(SIGINT, signalquit);
 #endif
 #ifdef SIGHUP
-  signal(SIGHUP,signalsave);
+    signal(SIGHUP, signalsave);
 #endif
-
 #ifndef MSDOS
-  if (CATCH_SIGNALS) {
-    signal(SIGQUIT,signalexit);
-    signal(SIGILL,signalexit);
+
+    if (CATCH_SIGNALS)
+    {
+        signal(SIGQUIT, signalexit);
+        signal(SIGILL, signalexit);
 #ifdef DEBUG
-    if( DG_debug_flag ) {
+
+        if ( DG_debug_flag )
+        {
 #endif
-    signal(SIGTRAP,signalexit);
-    signal(SIGFPE,signalexit);
-    signal(SIGSEGV,signalexit);
+            signal(SIGTRAP, signalexit);
+            signal(SIGFPE, signalexit);
+            signal(SIGSEGV, signalexit);
 #ifdef DEBUG
-    }
+        }
+
 #endif
 #ifdef SIGIOT
-    signal(SIGIOT,signalexit);
+        signal(SIGIOT, signalexit);
 #endif
 #ifdef SIGABRT
-    signal(SIGABRT,signalexit);
+        signal(SIGABRT, signalexit);
 #endif
 #ifdef SIGEMT
-    signal(SIGEMT,signalexit);
+        signal(SIGEMT, signalexit);
 #endif
 #ifdef SIGBUS
-    signal(SIGBUS,signalexit);
+        signal(SIGBUS, signalexit);
 #endif
 #ifdef SIGSYS
-    signal(SIGSYS,signalexit);
+        signal(SIGSYS, signalexit);
 #endif
     }
+
 #endif
+#ifndef FIXED_OMEGALIB
+
+    if (!(Omegalib = getenv("OMEGALIB")))
+#endif
+        Omegalib = OMEGALIB;
 
 #ifndef FIXED_OMEGALIB
-  if (!(Omegalib = getenv("OMEGALIB")))
+
+    if (!(Omegavar = getenv("OMEGAVAR")))
 #endif
-    Omegalib = OMEGALIB;
+        Omegavar = OMEGAVAR;
 
-#ifndef FIXED_OMEGALIB
-  if (!(Omegavar = getenv("OMEGAVAR")))
-#endif
-    Omegavar = OMEGAVAR;
+    /* if filecheck is 0, some necessary data files are missing */
+    if (filecheck() == 0) { exit(0); }
 
-  /* if filecheck is 0, some necessary data files are missing */
-  if (filecheck() == 0) exit(0);
-
-  /* all kinds of initialization */
-  init_perms();
-  initgraf();
+    /* all kinds of initialization */
+    init_perms();
+    initgraf();
 #ifndef MSDOS_SUPPORTED_ANTIQUE
-  initdirs();
+    initdirs();
 #endif
-  initrand(E_RANDOM, 0);
-  initspells();
-
+    initrand(E_RANDOM, 0);
+    initspells();
 #ifdef DEBUG
-  /* initialize debug log file */
-  DG_debug_log = fopen( "/tmp/omega_dbg_log", "a" );
-  assert( DG_debug_log ); /* WDT :) */
-  setvbuf( DG_debug_log, NULL, _IOLBF, 0);
-  fprintf(DG_debug_log, "##############  new game started ##############\n");
+    /* initialize debug log file */
+    DG_debug_log = fopen( "/tmp/omega_dbg_log", "a" );
+    assert( DG_debug_log ); /* WDT :) */
+    setvbuf( DG_debug_log, NULL, _IOLBF, 0);
+    fprintf(DG_debug_log, "##############  new game started ##############\n");
 #endif
 
-  for (count = 0; count < STRING_BUFFER_SIZE; count++)
-    strcpy(Stringbuffer[count],"<nothing>");
+    for (count = 0; count < STRING_BUFFER_SIZE; count++)
+    { strcpy(Stringbuffer[count], "<nothing>"); }
 
 #ifdef SAVE_LEVELS
-  msdos_init();
+    msdos_init();
 #endif
+    omega_title();
+    showscores();
 
-  omega_title();
-  showscores();
+    if (scores_only )
+    {
+        endgraf();
+        exit(0);
+    }
 
-  if (scores_only ) {
-    endgraf();
-    exit(0);
-  }
+    /* game restore attempts to restore game if there is an argument */
+    if (continuing)
+    {
+        game_restore(SaveFileName);
+        mprint("Your adventure continues....");
+    }
 
-  /* game restore attempts to restore game if there is an argument */
-  if (continuing) 
-  {
-     game_restore(SaveFileName);
-     mprint("Your adventure continues....");
-  }
-  else
-  {
-    /* monsters initialized in game_restore if game is being restored */  
-    /* items initialized in game_restore if game is being restored */
-    inititem(TRUE);
-    Date = random_range(360);
-    Phase = random_range(24);
+    else
+    {
+        /* monsters initialized in game_restore if game is being restored */
+        /* items initialized in game_restore if game is being restored */
+        inititem(TRUE);
+        Date = random_range(360);
+        Phase = random_range(24);
 #ifdef NEW_BANK
-    bank_init();
+        bank_init();
 #else
-    strcpy(Password,"");
+        strcpy(Password, "");
 #endif
-    continuing = initplayer(); /* RM: 04-19-2000 loading patch */
-  }
-  if (!continuing)
-  {
-    init_world();  /* RM: 04-19-2000 loading patch */
-    mprint("'?' for help or commandlist, 'Q' to quit.");
-  }
+        continuing = initplayer(); /* RM: 04-19-2000 loading patch */
+    }
 
-  timeprint();
-  calc_melee();
-  if (Current_Environment != E_COUNTRYSIDE)
-    showroom(Level->site[Player.x][Player.y].roomnumber);
-  else
-    terrain_check(FALSE);
-  
-  if (optionp(SHOW_COLOUR))
-    colour_on();
-  else
-    colour_off();
+    if (!continuing)
+    {
+        init_world();  /* RM: 04-19-2000 loading patch */
+        mprint("'?' for help or commandlist, 'Q' to quit.");
+    }
 
-  screencheck(Player.x,Player.y);
+    timeprint();
+    calc_melee();
 
- /* game cycle */
-  if (!continuing)
-    time_clock(TRUE);
-  while (TRUE) {
-    if (Current_Environment == E_COUNTRYSIDE)
-      p_country_process();
-    else time_clock(FALSE);
-  }
+    if (Current_Environment != E_COUNTRYSIDE)
+    { showroom(Level->site[Player.x][Player.y].roomnumber); }
+
+    else
+    { terrain_check(FALSE); }
+
+    if (optionp(SHOW_COLOUR))
+    { colour_on(); }
+
+    else
+    { colour_off(); }
+
+    screencheck(Player.x, Player.y);
+
+    /* game cycle */
+    if (!continuing)
+    { time_clock(TRUE); }
+
+    while (TRUE)
+    {
+        if (Current_Environment == E_COUNTRYSIDE)
+        { p_country_process(); }
+
+        else { time_clock(FALSE); }
+    }
+    lua_close(lua_state);
 }
 
 #ifndef MSDOS
