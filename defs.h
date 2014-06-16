@@ -464,6 +464,8 @@ on save and restore. */
 #define RS_OMEGA_DAIS ROOMBASE+29
 
 /* Colors */
+#include "colors.h"
+    
 /* objects, locations, and terrain; characters to draw */
 #define NULL_ITEM '\0'
 #define SPACE (' ' | CLR(WHITE))
@@ -522,15 +524,7 @@ on save and restore. */
 #define SEARCH_DURATION 11
 
 /* Player.options bits */
-#define BELLICOSE 1 
-#define JUMPMOVE 2
-#define RUNSTOP 4
-#define PICKUP 8
-#define CONFIRM 16
-#define TOPINV 32
-#define PACKADD 64
-#define COMPRESS_OPTION 128
-#define SHOW_COLOUR 256
+#include "player_options.h"
 
 /* This has to be changed whenever an item is added */
 #define NUMSCROLLS 24
