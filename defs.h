@@ -1442,12 +1442,6 @@ typedef struct map_type map;
 
 /* random typedef's */
 
-typedef struct monsterlist mltype;
-typedef mltype *pml;
-
-typedef struct monster montype;
-typedef montype *pmt;
-
 typedef struct location loctype;
 typedef loctype *plc;
 

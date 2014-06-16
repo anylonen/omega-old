@@ -19,11 +19,16 @@ struct monster
     char* monstring, *corpsestr, *meleestr;
 };
 
-
 struct monsterlist
 {
     struct monster* m;
     struct monsterlist* next;
 };
+
+typedef struct monster montype;
+typedef montype *pmt;
+
+typedef struct monsterlist mltype;
+typedef mltype *pml;
 
 #endif
