@@ -21,6 +21,7 @@ definitions in the following section. */
 #include "terrain.h"
 #include "location.h"
 #include "level.h"
+#include "player.h"
 
 /*--------------------------USER DEFINITIONS--------------------------*/
 
@@ -30,11 +31,6 @@ definitions in the following section. */
 /* A few parody quotes...  These have to be checked to make sure that they
  * make sense even if you don't know what they're parodying. */
 #define TRADEMARK_VIOLATION
-
-
-/* Include the Monk guild. */
-#define INCLUDE_MONKS
-#include "player.h"
 
 /* Update the display every turn to center on the player.  Rather heavy
  * on the bandwidth. */
@@ -740,18 +736,8 @@ for example. */
 #define M_MELEE_DEATH 415
 
 /* movement functions */
-#define M_MOVE_NORMAL 501
-#define M_MOVE_FLUTTER 502
-#define M_MOVE_TELEPORT 503
-#define M_MOVE_FOLLOW 504
-#define M_MOVE_RANDOM 505
-#define M_MOVE_SMART 506
-#define M_MOVE_SPIRIT 507
-#define M_MOVE_SCAREDY 508
-#define M_MOVE_CONFUSED 509
-#define M_MOVE_ANIMAL 510
-#define M_MOVE_LEASH 230
-
+#include "movement.h"
+    
 /* MLx -> index to Monsters starting for level x */
 /* MLx -> number of monsters of level x or less */
 /* NML_x -> number of monsters of level x */

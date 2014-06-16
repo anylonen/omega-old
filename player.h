@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "object.h"
+#include "monk.h"
 
 /* player immunity indices */
 /* also monster immunity bits (2^n) */

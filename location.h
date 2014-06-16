@@ -4,6 +4,7 @@
 #include "symbol.h"
 #include "object.h"
 #include "monster.h"
+#include "monk.h"
 
 /* location functions */
 #define L_NO_OP 0
