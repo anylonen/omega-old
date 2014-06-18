@@ -12,6 +12,7 @@
 
 #include "vendor/luajit/src/luajit.h"
 #include <string.h>
+#include <math.h>
 #include "defs.h"
 
 #include "extern.h"

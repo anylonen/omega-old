@@ -4,32 +4,24 @@
 /* random  function declarations from system libraries */
 
 #include <stdlib.h>
-
-/* The assert macro (for ANSI/ISO C).  Hopefully this will always work! */
+#include <stdio.h>
 #include <assert.h>
-
-/*
-#ifdef MSDOS
-#include <time.h>
-#define getlogin() "pcuser"
-#endif
- */
+#include <string.h>
 
 #undef sign
 #undef max
 #undef min
-#undef abs
+
 /* These must be made to work for both longs and ints */
 #define sign(n) (((n) < 0) ? -1 : (((n) > 0) ? 1 : 0))
 #define max(a,b) (((a) > (b)) ? (a) : (b))
 #define min(a,b) (((a) < (b)) ? (a) : (b))
-#define abs(n) (((n) < 0) ? (-(n)) : (n))
 
 #define RANDFUNCTION genrand
 #define SRANDFUNCTION sgenrand
 
 /* WDT: This should be harmless under ANSI C, and will stop
- * some errors under bizarre platforms. */
+ * some errors under bizarre platforms. */ 
 #define pow2(n) (1L << (n))
 
 /* these bit operations were functions, but are faster as macros... */
@@ -54,19 +46,6 @@
 #define optionp(o) ((Player.options&(o))?1:0)
 #define optionset(o) (Player.options |= (o))
 #define optionreset(o) (Player.options &= ~(o))
-
-/* systemV for some reason uses string.h instead of strings.h */
-/* Also, random and srandom are unlikely to be found on system V... */
-
-#ifdef STRING
-#include <string.h>
-#endif
-
-#ifndef STRING
-#include <strings.h>
-#endif
-
-#include <stdio.h>
 
 #ifndef TRUE
 #define TRUE 1

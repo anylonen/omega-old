@@ -32,7 +32,7 @@ CC = clang
 #LIBS = -lcurses -ltermlib
 #LIBS = -lpdcurses
 #Linux links in term?? automatically.
-LIBS = -lluajit -lncurses
+LIBS = -lluajit -lncurses -lm
 
 ### uncomment to use "op-curses" package
 #OPDEF = -DUSE_OPCURSES
