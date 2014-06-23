@@ -2,6 +2,7 @@
 /* movef.c */
 /* the movefunctions switch functions, for player and monster*/
 
+#include "movef.h"
 #include "glob.h"
 
 void p_movefunction(int movef)
