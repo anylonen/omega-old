@@ -19,14 +19,7 @@
 #include "effect2.h"
 #include "effect3.h"
 #include "env.h"
-
-/* etc.c functions */
-
-char* nameprint( void );
-char* slotstr( int );
-char* wordnum( int );
-void hint( void );
-void learnclericalspells( int, int );
+#include "etc.h"
 
 /* file.c functions */
 
