@@ -2,6 +2,7 @@
 /* mspec.c */
 /* monster special functions */
 
+#include "mspec.h"
 #include "glob.h"
 
 void m_sp_mp(pmt m)
