@@ -3,8 +3,8 @@
 /* this file includes main() and some top-level functions */
 /* omega.c */
 
+#include "omega.h"
 #include "glob.h"
-
 #if !defined(MSDOS_SUPPORTED_ANTIQUE)
 #include <signal.h>
 #include <fcntl.h>

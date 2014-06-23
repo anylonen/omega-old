@@ -3,15 +3,7 @@
 
 #include "newrand.h"
 #include "stats.h"
-/* omega.c functions */
-
-int main( int, char *[] );
-int game_restore( char* );
-void init_world( void );
-void inititem( int );
-void initrand( int, int );
-void signalexit(int);
-void signalsave(int);
+#include "omega.h"
 
 /* abyss.c functions */
 
