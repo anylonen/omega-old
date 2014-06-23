@@ -5,6 +5,7 @@
    aux1.c and omega.c, as well as elsewhere. It is mainly here so aux1.c
    and aux3.c are not huge */
 
+#include "aux2.h"
 #include "abyss.h"
 #include "glob.h"
 /* Player stats like str, agi, etc give modifications to various abilities
