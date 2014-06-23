@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #endif
 
+#include "save.h"
 #include "glob.h"
 
 #ifdef ALLOWING_OLD_SAVEFILES
