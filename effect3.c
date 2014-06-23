@@ -1,6 +1,7 @@
 /* omega copyright (C) by Laurence Raphael Brothers, 1987,1988,1989 */
 /* effect3.c */
 
+#include "effect3.h"
 #include "glob.h"
 
 /* if know id, then summon that monster; else (if < 0) get one. */
