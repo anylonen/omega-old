@@ -2,6 +2,7 @@
 /* mstrike.c */
 /* monster strike functions */
 
+#include "mstrike.h"
 #include "glob.h"
 
 void m_firebolt(pmt m)
