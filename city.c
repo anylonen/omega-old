@@ -2,8 +2,8 @@
 /* city.c */
 /* some functions to make the city level */
 
+#include "city.h"
 #include "glob.h"
-
 
 void mazesite( char, int, int, int );
 extern int WIDTH, LENGTH;
