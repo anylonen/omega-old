@@ -18,14 +18,7 @@
 #include "effect1.h"
 #include "effect2.h"
 #include "effect3.h"
-
-/* env.c functions */
-
-void load_arena( void );
-void load_circle( int );
-void load_court( int );
-void make_archmage( int, int );
-void make_prime( int, int );
+#include "env.h"
 
 /* etc.c functions */
 

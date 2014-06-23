@@ -2,6 +2,7 @@
 /* env.c */
 /* some load_* routines for special environments */
 
+#include "env.h"
 #include "glob.h"
 
 /* loads the arena level into Level*/
