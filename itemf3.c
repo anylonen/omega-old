@@ -3,6 +3,7 @@
 
 /* mostly artifact and stick functions */
 
+#include "itemf3.h"
 #include "glob.h"
 
 /* amulet of the planes */
