@@ -9,6 +9,7 @@
 #include <unistd.h>
 #endif
 
+#include "command3.h"
 #include "glob.h"
 
 /* look at some spot */
