@@ -25,6 +25,8 @@
 /* When you use this, send an email to: matumoto@math.keio.ac.jp   */
 /* with an appropriate reference to your work.                     */
 
+#include "newrand.h"
+
 /* Period parameters */  
 #define N 624
 #define M 397

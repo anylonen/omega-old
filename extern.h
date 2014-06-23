@@ -1,9 +1,7 @@
 /* omega copyright (c) 1987,1988,1989 by Laurence Raphael Brothers */
 /* extern.h -- function declarations */
 
-/* newrand.c */
-unsigned long genrand(void);
-void sgenrand(unsigned long seed);
+#include "newrand.h"
 
 /* stats.c function(s) */
 void editstats( void );
