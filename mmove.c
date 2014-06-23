@@ -2,6 +2,7 @@
 /* mmove.c */
 /* monster move functions */
 
+#include "mmove.h"
 #include "glob.h"
 
 /* like m_normal_move, but can open doors */
