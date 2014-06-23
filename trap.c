@@ -2,6 +2,7 @@
 /* trap.c */
 /* trap movement functions */
 
+#include "trap.h"
 #include "glob.h"
 
 /* various traps */
