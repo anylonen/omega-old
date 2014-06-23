@@ -47,11 +47,7 @@
 #include "site1.h"
 #include "site2.h"
 #include "spell.h"
-
-/* time.c functions */
-
-void fix_phantom( struct monster* );
-void time_clock( int );
+#include "time.h"
 
 /* trap.c functions */
 
