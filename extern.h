@@ -25,12 +25,7 @@
 #include "gen2.h"
 #include "guild1.h"
 #include "guild2.h"
-
-/* house.c functions */
-
-void load_house( int, int );
-void make_house_npc( int, int );
-void make_mansion_npc( int, int );
+#include "house.h"
 
 /* inv.c functions */
 

@@ -2,8 +2,8 @@
 /* house.c */
 /* some functions to make the house levels */
 
+#include "house.h"
 #include "glob.h"
-
 
 /* loads the house level into Level*/
 void load_house(int kind, int populate)
@@ -244,8 +244,6 @@ void load_house(int kind, int populate)
     initrand(E_RESTORE, 0);
 }
 
-
-
 /* makes a log npc for houses and hovels */
 void make_house_npc(int i, int j)
 {
@@ -289,7 +287,6 @@ void make_house_npc(int i, int j)
         m_pickup(ml->m, ob);
     }
 }
-
 
 /* makes a hiscore npc for mansions */
 void make_mansion_npc(int i, int j)
