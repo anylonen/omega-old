@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <limits.h>
 #include <unistd.h>
+#include "bank.h"
 #include "glob.h"
 
 /* swiped from scr.c */
