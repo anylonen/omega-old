@@ -6,6 +6,7 @@
 #include <unistd.h>
 #endif
 
+#include "site1.h"
 #include "glob.h"
 
 void l_armorer(void)
