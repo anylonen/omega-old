@@ -21,6 +21,7 @@
 # include <errno.h>
 #endif
 
+#include "file.h"
 #include "glob.h"
 
 FILE* checkfopen(char* filestring, char* optionstring)
