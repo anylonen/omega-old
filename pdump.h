@@ -1,6 +1,8 @@
 #ifndef PDUMP_H
 #define PDUMP_H
 
+#include "symbol.h"
+
 /* pdump.c functions */
 
 void player_dump( void );

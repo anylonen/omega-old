@@ -51,14 +51,5 @@
 #include "trap.h"
 #include "util.h"
 #include "pdump.h"
+#include "village.h"
 
-/* village.c functions */
-
-void assign_village_function( int, int, int );
-void load_village( int, int );
-void make_food_bin( int, int );
-void make_guard( int, int );
-void make_horse( int, int );
-void make_merchant( int, int );
-void make_sheep( int, int );
-void special_village_site( int, int, int );

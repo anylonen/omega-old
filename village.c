@@ -2,6 +2,7 @@
 /* village.c */
 /* some functions to make the village levels */
 
+#include "village.h"
 #include "glob.h"
 
 /* loads the village level into Level*/
