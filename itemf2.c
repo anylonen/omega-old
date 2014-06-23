@@ -3,6 +3,7 @@
 
 /* mostly ring, armor, and weapon functions */
 
+#include "itemf2.h"
 #include "glob.h"
 
 /* ring functions */
