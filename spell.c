@@ -2,6 +2,7 @@
 /* spell.c */
 /* functions having to do with spellcasting */
 
+#include "spell.h"
 #include "glob.h"
 
 void s_nutrition(void)
