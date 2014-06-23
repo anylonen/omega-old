@@ -2,6 +2,7 @@
 /* mon.c */
 /* various functions to do with monsters */
 
+#include "monster.h"
 #include "glob.h"
 
 /*               Revised function                   */

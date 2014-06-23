@@ -1,6 +1,7 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 
+#include "object.h"
 #include "symbol.h"
 
 /* MLx -> index to Monsters starting for level x */
@@ -218,5 +219,45 @@ typedef montype *pmt;
 
 typedef struct monsterlist mltype;
 typedef mltype *pml;
+
+
+/* mon.c functions */
+
+char* mancorpse( void );
+char* angeltype( int, int );
+void determine_npc_behavior( pmt, int, int );
+void m_abyss( struct monster* );
+void m_altar( struct monster* );
+void m_damage( struct monster*, int, int );
+void m_remove( struct monster* );
+void m_death( struct monster* );
+void m_dropstuff( struct monster* );
+void m_fire( struct monster* );
+void m_lava( struct monster* );
+void m_no_op( struct monster* );
+void m_pickup( struct monster*, struct object* );
+void m_pulse( struct monster* );
+void m_trap_abyss( struct monster* );
+void m_trap_acid( struct monster* );
+void m_trap_blade( struct monster* );
+void m_trap_dart( struct monster* );
+void m_trap_disintegrate( struct monster* );
+void m_trap_door( struct monster* );
+void m_trap_fire( struct monster* );
+void m_trap_manadrain( struct monster* );
+void m_trap_pit( struct monster* );
+void m_trap_sleepgas( struct monster* );
+void m_trap_snare( struct monster* );
+void m_trap_teleport( struct monster* );
+void m_water( struct monster* );
+void make_hiscore_npc( pmt, int );
+void make_log_npc( struct monster* );
+void monster_action( struct monster*, int );
+void monster_move( struct monster* );
+void monster_special( struct monster* );
+void monster_strike( struct monster* );
+void monster_talk( struct monster* );
+void movemonster( struct monster*, int, int );
+void strengthen_death( struct monster* );
 
 #endif
