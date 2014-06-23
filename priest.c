@@ -2,6 +2,7 @@
 /* priest.c */
 /* functions for clerics. */
 
+#include "priest.h"
 #include "glob.h"
 
 /* prayer occurs at altars, hence name of function */
