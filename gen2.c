@@ -2,6 +2,7 @@
 /* gen2.c */
 /* level generator functions */
 
+#include "gen2.h"
 #include "glob.h"
 
 /* For each level, there should be one stairway going up and one down.
