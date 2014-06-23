@@ -2,6 +2,7 @@
 /* mmelee */
 /* various functions to do with monster melee */
 
+#include "mmelee.h"
 #include "glob.h"
 
 void m_hit(pmt m, int dtype)
