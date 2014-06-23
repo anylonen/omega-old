@@ -3,6 +3,7 @@
 
 #include "location.h"
 #include "monster.h"
+#include "symbol.h"
 
 #define MAXWIDTH 128
 #define MAXLENGTH 64
@@ -29,5 +30,18 @@ struct level
  
 typedef struct level levtype;
 typedef levtype *plv;
+
+/* lev.c functions */
+
+int difficulty( void ); /* this function in util.c if MSDOS defined */
+pmt m_create( int, int, int, int );
+pmt make_creature( int );
+void make_country_monsters( Symbol );
+void make_site_monster( int, int, int );
+void make_site_treasure( int, int, int );
+void make_specific_treasure( int, int, int );
+void populate_level( int );
+void stock_level( void );
+void wandercheck( void );
 
 #endif
