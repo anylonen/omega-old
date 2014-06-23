@@ -11,6 +11,7 @@
 #endif
 #endif
 
+#include "abyss.h"
 #include "glob.h"
 
 /* loads the abyss level into Level*/
