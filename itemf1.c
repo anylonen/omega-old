@@ -3,6 +3,7 @@
 
 /* various item functions: potions,scrolls,boots,cloaks,things,food */
 
+#include "itemf1.h"
 #include "glob.h"
 
 /* general item functions */
