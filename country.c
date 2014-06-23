@@ -3,6 +3,7 @@
 /* load_country(), and all load_ functions for places which are */
 /* accessible from the country and don't have their own files */
 
+#include "country.h"
 #include "glob.h"
 
 /* loads the countryside level from the data file */
