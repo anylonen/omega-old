@@ -8,6 +8,7 @@
 #include <ctype.h>
 #endif
 
+#include "command2.h"
 #include "glob.h"
 
 /* no op a turn.... */
