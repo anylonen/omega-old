@@ -2,6 +2,7 @@
 /* gen1.c */
 /* level generator functions */
 
+#include "gen1.h"
 #include "glob.h"
 
 #include <time.h>
