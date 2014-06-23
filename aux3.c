@@ -5,6 +5,7 @@
    aux1.c and omega.c, as well as elsewhere. It is mainly here so aux1.c
    and aux2.c are not huge */
 
+#include "aux3.h"
 #include "glob.h"
 
 /* check every ten minutes */

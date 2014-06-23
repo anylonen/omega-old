@@ -11,6 +11,9 @@
 #define INCLUDED_GLOB_H
 
 #include "vendor/luajit/src/luajit.h"
+#include "vendor/luajit/src/lua.h"
+#include "vendor/luajit/src/lualib.h"
+#include "vendor/luajit/src/lauxlib.h"
 #include <string.h>
 #include <math.h>
 #include "defs.h"
