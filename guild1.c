@@ -6,6 +6,7 @@
 /* They are all l_ functions since they are basically activated*/
 /* at some site or other. */
 
+#include "guild1.h"
 #include "glob.h"
 
 int merc_xps [COMMANDANT] =

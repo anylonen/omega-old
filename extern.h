@@ -23,12 +23,7 @@
 #include "file.h"
 #include "gen1.h"
 #include "gen2.h"
-
-/* guild1.c functions */
-
-void l_arena( void );
-void l_castle( void );
-void l_merc_guild( void );
+#include "guild1.h"
 
 /* guild2.c functions */
 
