@@ -14,11 +14,11 @@
 # endif
 #endif
 
+#include "inventory.h"
 #include "glob.h"
 
 static void inv_display_munge(void);
 static void inv_display_refresh(void);
-
 
 /* drops money, heh heh */
 void drop_money(void)
