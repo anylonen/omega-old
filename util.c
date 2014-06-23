@@ -12,6 +12,7 @@ int setreuid(uid_t ruid, uid_t euid);
 #include <stdlib.h>
 #endif
 
+#include "util.h"
 #include "glob.h"
 
 void setPlayerXY(int x, int y)
