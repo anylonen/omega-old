@@ -32,15 +32,7 @@
 #include "itemf2.h"
 #include "itemf3.h"
 #include "level.h"
-
-/* map.c functions */
-map* map_open(enum map_identifier);
-void map_setLevel(map*, int);
-int map_getWidth(map*);
-int map_getLength(map*);
-int map_getDepth(map*);
-char map_getSiteChar(map*, int, int);
-void map_close(map*);
+#include "map.h"
 
 /* mmelee.c functions */
 

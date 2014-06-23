@@ -767,13 +767,6 @@ enum map_identifier {
 
 /* typedefs needed by structs */
 
-/* I don't ever define map_type (except in the C file where it's used); this
- * means that you _must_ declare only pointers to it.  I've defined, of
- * course, all of the needed accessor and mutator functions; see externs.h,
- * in the map.c section. */
-struct map_type;
-typedef struct map_type map;
-
 #ifdef SAVE_LEVELS
 plv msdos_changelevel();
 #endif

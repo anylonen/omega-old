@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "map.h"
+
 #define MAP_VERSION      2
 #define MAP_HEADER_SIZE  3
 #define MAP_ITEM_SIZE    9
