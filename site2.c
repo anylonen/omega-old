@@ -2,6 +2,7 @@
 /* site2.c */
 /* 2nd half of site functions and aux functions to them */
 
+#include "site2.h"
 #include "glob.h"
 
 void l_condo(void)
