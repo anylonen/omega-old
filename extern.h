@@ -2,12 +2,7 @@
 /* extern.h -- function declarations */
 
 #include "newrand.h"
-
-/* stats.c function(s) */
-void editstats( void );
-void display_stats( void );
-void display_stat_slot( int );
-
+#include "stats.h"
 /* omega.c functions */
 
 int main( int, char *[] );

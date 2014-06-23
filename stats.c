@@ -13,6 +13,7 @@
 #include <ctype.h>
 #endif
 
+#include "stats.h"
 #include "glob.h"
 
 void editstats(void)
