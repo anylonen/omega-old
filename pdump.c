@@ -2,6 +2,7 @@
 /* pdump.c */
 
 #include <ctype.h>
+#include "pdump.h"
 #include "glob.h"
 
 char* monk_rank_string(int rank);
