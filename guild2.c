@@ -6,6 +6,7 @@
 /* They are all l_ functions since they are basically activated*/
 /* at some site or other. */
 
+#include "guild2.h"
 #include "glob.h"
 
 void l_thieves_guild(void)

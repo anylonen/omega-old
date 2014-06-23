@@ -24,16 +24,7 @@
 #include "gen1.h"
 #include "gen2.h"
 #include "guild1.h"
-
-/* guild2.c functions */
-
-void l_college( void );
-#ifdef INCLUDE_MONKS
-void l_monastery( void );
-#endif
-void l_order( void );
-void l_sorcerors( void );
-void l_thieves_guild( void );
+#include "guild2.h"
 
 /* house.c functions */
 
