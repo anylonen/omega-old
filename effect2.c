@@ -1,6 +1,7 @@
 /* omega copyright (C) by Laurence Raphael Brothers, 1987,1988,1989 */
 /* effect2.c */
 
+#include "effect2.h"
 #include "glob.h"
 
 void knowledge(int blessing)
