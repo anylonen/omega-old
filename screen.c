@@ -23,6 +23,7 @@
 # define CHARATTR(c)    ((c) & ~0xff)
 #endif
 
+#include "screen.h"
 #include "glob.h"
 #include <ctype.h>
 #include <unistd.h>

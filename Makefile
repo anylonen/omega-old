@@ -56,7 +56,7 @@ OBJ = omega.o abyss.o aux1.o aux2.o aux3.o bank.o character.o city.o\
       effect2.o effect3.o etc.o env.o file.o gen1.o gen2.o guild1.o guild2.o\
       house.o init.o inventory.o item.o itemf1.o itemf2.o itemf3.o level.o map.o\
       mmelee.o mmove.o monster.o move.o movef.o mspec.o mstrike.o mtalk.o\
-      newrand.o priest.o pdump.o save.o scr.o site1.o site2.o spell.o\
+      newrand.o priest.o pdump.o save.o screen.o site1.o site2.o spell.o\
       stats.o time.o trap.o util.o village.o
 
 all: maps.dat omega
