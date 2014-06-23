@@ -2,6 +2,7 @@
 /* move.c */
 /* general functions for player moving */
 
+#include "move.h"
 #include "glob.h"
 
 #include <unistd.h> /* usleep */
