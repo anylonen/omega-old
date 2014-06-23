@@ -2,6 +2,7 @@
 /* aux1.c */
 /* auxiliary functions for those in com.c, also see aux2.c and aux3.c */
 
+#include "aux1.h"
 #include "glob.h"
 
 /* check to see if too much tunneling has been done in this level */
