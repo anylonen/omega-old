@@ -11,12 +11,7 @@
 #include "bank.h"
 #include "character.h"
 #include "city.h"
-
-/* command1.c functions */
-
-void p_country_process( void );
-void p_process( void );
-
+#include "command1.h"
 /* command2.c functions */
 
 void pickup( void );

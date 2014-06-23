@@ -5,6 +5,7 @@
 which works everywhere but the countryside, and p_couyntry_process,
 which works.... */
 
+#include "command1.h"
 #include "glob.h"
 
 /* deal with a new player command in dungeon or city mode*/
