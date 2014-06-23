@@ -51,7 +51,7 @@ TOOLS = tools/crypt tools/decrypt tools/makedate
 
 CLROBJ = clrgen.o
 
-OBJ = omega.o abyss.o aux1.o aux2.o aux3.o bank.o char.o city.o\
+OBJ = omega.o abyss.o aux1.o aux2.o aux3.o bank.o character.o city.o\
       command1.o command2.o command3.o country.o effect1.o\
       effect2.o effect3.o etc.o env.o file.o gen1.o gen2.o guild1.o guild2.o\
       house.o init.o inv.o item.o itemf1.o itemf2.o itemf3.o lev.o map.o\
