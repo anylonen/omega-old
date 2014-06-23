@@ -1,6 +1,7 @@
 /* omega copyright (C) by Laurence Raphael Brothers, 1987,1988,1989 */
 /* effect1.c */
 
+#include "effect1.h"
 #include "glob.h"
 
 /* enchant */
