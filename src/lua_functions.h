@@ -1,10 +1,7 @@
 #ifndef LUA_FUNCTIONS_H
 #define LUA_FUNCTIONS_H
 
-#include "vendor/luajit/src/luajit.h"
-#include "vendor/luajit/src/lua.h"
-#include "vendor/luajit/src/lualib.h"
-#include "vendor/luajit/src/lauxlib.h"
+#include <lua.h>
 
 extern lua_State* lua_state;
 

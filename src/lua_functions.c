@@ -1,4 +1,5 @@
 #include "lua_functions.h"
+#include <stdio.h>
 
 lua_State* lua_state = 0;
 
