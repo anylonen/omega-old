@@ -32,6 +32,7 @@
 #include "itemf2.h"
 #include "itemf3.h"
 #include "level.h"
+#include "lua_functions.h"
 #include "map.h"
 #include "mmelee.h"
 #include "mmove.h"

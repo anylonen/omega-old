@@ -8,13 +8,17 @@
 #include <assert.h>
 #include <string.h>
 
+#include "lua_functions.h"
+
 #undef sign
 #undef max
 #undef min
 
 /* These must be made to work for both longs and ints */
 #define sign(n) (((n) < 0) ? -1 : (((n) > 0) ? 1 : 0))
-#define max(a,b) (((a) > (b)) ? (a) : (b))
+/* #define max(a,b) (((a) > (b)) ? (a) : (b)) */
+int max(const int first, const int second);
+
 #define min(a,b) (((a) < (b)) ? (a) : (b))
 
 #define RANDFUNCTION genrand

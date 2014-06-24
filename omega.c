@@ -19,6 +19,8 @@
 # include <unistd.h>
 #endif
 
+#include "lua_functions.h"
+
 /* most globals originate in omega.c */
 
 char* Omegalib;     /* contains the path to the library files */
@@ -261,10 +263,6 @@ void signalquit(int ignore)
 {
     quit();
 }
-void bail(lua_State* L, char* error_message)
-{
-    fprintf(stderr, "\nFATAL ERROR:\n %s: %s\n\n", error_message, lua_tostring(L, -1));
-}
 
 int main(int argc, char* argv[])
 {
@@ -272,17 +270,12 @@ int main(int argc, char* argv[])
     int count;
     int scores_only = 0;
     int i;
-    lua_State* lua_state = luaL_newstate();
-    luaL_openlibs(lua_state);
+    lua_State* L = get_luastate();
+    luaL_openlibs(L);
 
-    if ( luaL_loadfile(lua_state, "omega.lua"))
+    if ( luaL_dofile(L, "omega.lua"))
     {
-        bail(lua_state, "Cannot open omega.lua");
-    }
-
-    if ( lua_pcall(lua_state, 0, 0, 0 ))
-    {
-        bail(lua_state, "Cannot pcall omega.lua");
+        bail(L, "Cannot open omega.lua");
     }
 
 #ifndef NOGETOPT
@@ -515,7 +508,8 @@ int main(int argc, char* argv[])
         }
     }
 
-    lua_close(lua_state);
+    lua_close(L);
+    L = 0;
 }
 
 #ifndef MSDOS
