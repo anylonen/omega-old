@@ -1,0 +1,39 @@
+#include "lua_functions.h"
+
+lua_State* lua_state = 0;
+
+lua_State* get_luastate()
+{
+    if (lua_state == 0)
+    {
+        lua_state = luaL_newstate();
+    }
+
+    return lua_state;
+}
+
+void bail(lua_State* L, char* error_message)
+{
+    fprintf(stderr, "\nFATAL ERROR:\n %s: %s\n\n", error_message, lua_tostring(L, -1));
+}
+
+int LUA_max(lua_State* state, const int first, const int second)
+{
+    lua_getglobal(state, "max");
+    lua_pushnumber(state, first);
+    lua_pushnumber(state, second);
+
+    if (lua_pcall(state, 2, 1, 0) != 0)
+    {
+        bail(state, "Error running function max");
+    }
+
+    if (!lua_isnumber(state, -1))
+    {
+        bail(state, "Expected number, got something else");
+    }
+
+    int max = lua_tonumber(state, -1);
+    lua_pop(state, 1);
+    return max;
+}
