@@ -1,3 +1,0 @@
-?package(omega-rpg):command="/usr/games/omega-rpg" \
-	needs="text" section="Games/Adventure" \
-	title="Omega" hints="Roguelike,Dungeon"
