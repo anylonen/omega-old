@@ -22,4 +22,5 @@ include_directories(SYSTEM ${CURSES_INCLUDE_DIR})
 find_package(LuaJit REQUIRED)
 include_directories(SYSTEM ${LUAJIT_INCLUDE_DIRS})
 
+add_subdirectory(tools)
 add_subdirectory(src)
