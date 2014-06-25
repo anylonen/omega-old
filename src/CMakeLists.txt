@@ -1,4 +1,7 @@
 file(GLOB OMEGA_SOURCES *.c)
+list(APPEND OMEGA_SOURCES
+    clrgen.c
+    date.c)
 
 list(APPEND OMEGA_LINK_LIBRARIES
     ${CURSES_LIBRARIES}
