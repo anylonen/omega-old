@@ -38,3 +38,24 @@ int LUA_max(lua_State* state, const int first, const int second)
     lua_pop(state, 1);
     return max;
 }
+
+int LUA_min(lua_State* state, const int first, const int second)
+{
+    lua_getglobal(state, "min");
+    lua_pushnumber(state, first);
+    lua_pushnumber(state, second);
+
+    if (lua_pcall(state, 2, 1, 0) != 0)
+    {
+        bail(state, "Error running function min");
+    }
+
+    if (!lua_isnumber(state, -1))
+    {
+        bail(state, "Expected number, got something else");
+    }
+
+    int max = lua_tonumber(state, -1);
+    lua_pop(state, 1);
+    return max;
+}

@@ -17,15 +17,16 @@
 /* These must be made to work for both longs and ints */
 #define sign(n) (((n) < 0) ? -1 : (((n) > 0) ? 1 : 0))
 /* #define max(a,b) (((a) > (b)) ? (a) : (b)) */
-int max(const int first, const int second);
+/* #define min(a,b) (((a) < (b)) ? (a) : (b)) */
 
-#define min(a,b) (((a) < (b)) ? (a) : (b))
+int max(const int first, const int second);
+int min(const int first, const int second);
 
 #define RANDFUNCTION genrand
 #define SRANDFUNCTION sgenrand
 
 /* WDT: This should be harmless under ANSI C, and will stop
- * some errors under bizarre platforms. */ 
+ * some errors under bizarre platforms. */
 #define pow2(n) (1L << (n))
 
 /* these bit operations were functions, but are faster as macros... */

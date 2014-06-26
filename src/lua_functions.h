@@ -10,5 +10,6 @@ lua_State* get_luastate();
 void bail(lua_State* L, char* error_message);
 
 int LUA_max(lua_State* state, const int first, const int second);
+int LUA_min(lua_State* state, const int first, const int second);
 
 #endif
