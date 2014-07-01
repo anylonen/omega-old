@@ -164,6 +164,6 @@ struct player
 
 void player_regenerate_hp();
 void player_regenerate_mana();
-void player_regenerate();
+void player_regenerate_all();
 
 #endif

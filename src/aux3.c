@@ -59,7 +59,7 @@ void hourly_check(void)
 
     minute_status_check();
     tenminute_status_check();
-    player_regenerate();
+    player_regenerate_all();
 
     if (Current_Environment != E_COUNTRYSIDE && Current_Environment != E_ABYSS)
     {

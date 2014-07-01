@@ -20,7 +20,7 @@ void player_regenerate_mana()
     }
 }
 
-void player_regenerate()
+void player_regenerate_all()
 {
     player_regenerate_hp();
     player_regenerate_mana();
