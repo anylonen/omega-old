@@ -11,47 +11,8 @@
 #include "random_events.h"
 
 /* check every ten minutes */
-void tenminute_check(void)
+void make_regular_checks(void)
 {
-    if (Time % 60 == 0)
-    {
-        hourly_check();
-    }
-    else
-    {
-        if (Current_Environment == Current_Dungeon)
-        {
-            wandercheck();
-        }
-
-        minute_status_check();
-        tenminute_status_check();
-        player_regenerate_hp();
-
-        if (Current_Environment != E_COUNTRYSIDE && Current_Environment != E_ABYSS)
-        {
-            indoors_random_event();
-        }
-    }
-}
-
-/* hourly check is same as ten_minutely check except food is also
-   checked, and since time moves in hours out of doors, also
-   outdoors_random_event is possible */
-
-void hourly_check(void)
-{
-    Player.food--;
-    foodcheck();
-
-    if (hour() == 0) /* midnight, a new day */
-    {
-        moon_check();
-        Date++;
-    }
-
-    torch_check();
-
     if (Current_Environment == Current_Dungeon)
     {
         wandercheck();
@@ -64,6 +25,36 @@ void hourly_check(void)
     if (Current_Environment != E_COUNTRYSIDE && Current_Environment != E_ABYSS)
     {
         indoors_random_event();
+    }
+}
+
+void tenminute_check(void)
+{
+    if (Time % 60 == 0)
+    {
+        hourly_check();
+    }
+    else
+    {
+        make_regular_checks();
+    }
+}
+
+/* hourly check is same as ten_minutely check except food is also
+   checked, and since time moves in hours out of doors, also
+   outdoors_random_event is possible */
+
+void hourly_check(void)
+{
+    Player.food--;
+    foodcheck();
+    torch_check();
+    make_regular_checks();
+
+    if (hour() == 0) /* midnight, a new day */
+    {
+        moon_check();
+        Date++;
     }
 }
 
