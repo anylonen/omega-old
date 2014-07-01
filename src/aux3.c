@@ -7,6 +7,7 @@
 
 #include "aux3.h"
 #include "glob.h"
+#include "player.h"
 
 /* check every ten minutes */
 void tenminute_check(void)
@@ -62,10 +63,7 @@ void hourly_check(void)
     minute_status_check();
     tenminute_status_check();
 
-    if ((Player.status[DISEASED] == 0) && (Player.hp < Player.maxhp))
-    {
-        Player.hp = min(Player.maxhp, Player.hp + Player.level + 1);
-    }
+    player_renegenerate();
 
     if (Current_Environment != E_COUNTRYSIDE && Current_Environment != E_ABYSS)
     {

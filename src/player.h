@@ -162,4 +162,8 @@ struct player
     int packptr;
 };
 
+void player_regenerate_hp();
+void player_regenerate_mana();
+void player_renegenerate();
+
 #endif
