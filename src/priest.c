@@ -345,7 +345,8 @@ int check_sacrilege(int deity)
 
 int increase_priest_rank(int deity)
 {
-    if (Player.rank[PRIESTHOOD] == 0) switch (deity)
+    if (Player.rank[PRIESTHOOD] == 0)
+        switch (deity)
         {
             default:
                 print2("Some nameless god blesses you....");
