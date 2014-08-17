@@ -343,214 +343,253 @@ int check_sacrilege(int deity)
     return (sacrilege);
 }
 
-int increase_priest_rank(int deity)
+void player_join_patron(const int patron)
 {
-    if (Player.rank[PRIESTHOOD] == 0) switch (deity)
-        {
-            default:
-                print2("Some nameless god blesses you....");
-                Player.hp = max(Player.hp, Player.maxhp);
-                morewait();
-                print2("The altar crumbles to dust and blows away.");
-                Level->site[Player.x][Player.y].locchar = FLOOR;
-                Level->site[Player.x][Player.y].p_locf = L_NO_OP;
-                lset(Player.x, Player.y, CHANGED);
-                break;
+    Player.patron = patron;
+    Player.rank[PRIESTHOOD] = LAY;
+    Player.guildxp[PRIESTHOOD] = 1;
 
-            case ODIN:
-                if (Player.alignment > 0)
-                {
-                    print1("Odin hears your prayer!");
-                    print2(Priest[ODIN]);
-                    nprint2(" personally blesses you.");
-                    nprint2(" You are now a lay devotee of Odin.");
-                    Player.patron = ODIN;
-                    Player.rank[PRIESTHOOD] = LAY;
-                    Player.guildxp[PRIESTHOOD] = 1;
-                    /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                    /* morewait(); */
-                    learnclericalspells(ODIN, LAY);
-                }
-                else
-                {
-                    print1("Odin ignores you.");
-                }
-
-                break;
-
-            case SET:
-                if (Player.alignment < 0)
-                {
-                    print1("Set hears your prayer!");
-                    print2(Priest[SET]);
-                    nprint2(" personally blesses you. ");
-                    nprint2(" You are now a lay devotee of Set.");
-                    Player.patron = SET;
-                    Player.rank[PRIESTHOOD] = LAY;
-                    Player.guildxp[PRIESTHOOD] = 1;
-                    /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                    /* morewait(); */
-                    learnclericalspells(SET, LAY);
-                }
-                else
-                {
-                    print1("Set ignores you.");
-                }
-
-                break;
-
-            case ATHENA:
-                if (Player.alignment > 0)
-                {
-                    print1("Athena hears your prayer!");
-                    print2(Priest[ATHENA]);
-                    nprint2(" personally blesses you.");
-                    nprint2(" You are now a lay devotee of Athena.");
-                    Player.patron = ATHENA;
-                    Player.rank[PRIESTHOOD] = LAY;
-                    Player.guildxp[PRIESTHOOD] = 1;
-                    /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                    /* morewait(); */
-                    learnclericalspells(ATHENA, LAY);
-                }
-                else
-                {
-                    print1("Athena ignores you.");
-                }
-
-                break;
-
-            case HECATE:
-                if (Player.alignment < 0)
-                {
-                    print1("Hecate hears your prayer!");
-                    print2(Priest[HECATE]);
-                    nprint2(" personally blesses you.");
-                    nprint2(" You are now a lay devotee of Hecate.");
-                    Player.patron = HECATE;
-                    Player.rank[PRIESTHOOD] = LAY;
-                    Player.guildxp[PRIESTHOOD] = 1;
-                    /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                    /* morewait(); */
-                    learnclericalspells(HECATE, LAY);
-                }
-                else
-                {
-                    print1("Hecate ignores you.");
-                }
-
-                break;
-
-            case DRUID:
-                if (abs(Player.alignment) < 10)
-                {
-                    print1(Priest[DRUID]);
-                    nprint1(" personally blesses you.");
-                    print2("You are now a lay devotee of the Druids.");
-                    Player.patron = DRUID;
-                    Player.rank[PRIESTHOOD] = LAY;
-                    Player.guildxp[PRIESTHOOD] = 1;
-                    /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                    /* morewait(); */
-                    learnclericalspells(DRUID, LAY);
-                }
-                else
-                {
-                    print1("You hear a voice....");
-                    morewait();
-                    print2("'Only those who embody the Balance may become Druids.'");
-                }
-
-                break;
-
-            case DESTINY:
-                print1("The Lords of Destiny could hardly care less.");
-                print2("But you can consider yourself now to be a lay devotee.");
-                Player.patron = DESTINY;
-                Player.rank[PRIESTHOOD] = LAY;
-                Player.guildxp[PRIESTHOOD] = 1;
-                break;
-        }
-    else if (deity == Player.patron)
+    if (patron != DESTINY)
     {
-        if ((((deity == ODIN) || (deity == ATHENA)) &&
-                (Player.alignment < 1)) ||
-                (((deity == SET) || (deity == HECATE)) &&
-                 (Player.alignment > 1)) ||
-                ((deity == DRUID) && (abs(Player.alignment) > 10)))
+        learnclericalspells(patron, LAY);
+    }
+}
+
+void can_player_join_odin(void)
+{
+    if (Player.alignment > 0)
+    {
+        print1("Odin hears your prayer!");
+        print2(Priest[ODIN]);
+        nprint2(" personally blesses you.");
+        nprint2(" You are now a lay devotee of Odin.");
+        player_join_patron(ODIN);
+    }
+    else
+    {
+        print1("Odin ignores you.");
+    }
+}
+
+void can_player_join_set(void)
+{
+    if (Player.alignment < 0)
+    {
+        print1("Set hears your prayer!");
+        print2(Priest[SET]);
+        nprint2(" personally blesses you. ");
+        nprint2(" You are now a lay devotee of Set.");
+        player_join_patron(SET);
+    }
+    else
+    {
+        print1("Set ignores you.");
+    }
+}
+
+void can_player_join_athena(void)
+{
+    if (Player.alignment > 0)
+    {
+        print1("Athena hears your prayer!");
+        print2(Priest[ATHENA]);
+        nprint2(" personally blesses you.");
+        nprint2(" You are now a lay devotee of Athena.");
+        player_join_patron(ATHENA);
+    }
+    else
+    {
+        print1("Athena ignores you.");
+    }
+}
+
+void can_player_join_hecate(void)
+{
+    if (Player.alignment < 0)
+    {
+        print1("Hecate hears your prayer!");
+        print2(Priest[HECATE]);
+        nprint2(" personally blesses you.");
+        nprint2(" You are now a lay devotee of Hecate.");
+        player_join_patron(HECATE);
+    }
+    else
+    {
+        print1("Hecate ignores you.");
+    }
+}
+
+void can_player_join_druid(void)
+{
+    if (abs(Player.alignment) < 10)
+    {
+        print1(Priest[DRUID]);
+        nprint1(" personally blesses you.");
+        print2("You are now a lay devotee of the Druids.");
+        player_join_patron(DRUID);
+    }
+    else
+    {
+        print1("You hear a voice....");
+        morewait();
+        print2("'Only those who embody the Balance may become Druids.'");
+    }
+}
+
+void can_player_join_destiny(void)
+{
+    print1("The Lords of Destiny could hardly care less.");
+    print2("But you can consider yourself now to be a lay devotee.");
+    player_join_patron(DESTINY);
+}
+
+void player_has_no_priesthood_rank(const int deity)
+{
+    switch (deity)
+    {
+        case ODIN:
         {
-            print1("You have swerved from the One True Path!");
-            print2("Your deity is greatly displeased...");
-            Player.xp -= Player.level * Player.level;
-            Player.xp = max(0, Player.xp);
+            can_player_join_odin();
+            break;
         }
-        else if (Player.rank[PRIESTHOOD] == HIGHPRIEST)
+
+        case SET:
+        {
+            can_player_join_set();
+            break;
+        }
+
+        case ATHENA:
+        {
+            can_player_join_athena();
+            break;
+        }
+
+        case HECATE:
+        {
+            can_player_join_hecate();
+            break;
+        }
+
+        case DRUID:
+        {
+            can_player_join_druid();
+            break;
+        }
+
+        case DESTINY:
+        {
+            can_player_join_destiny();
+            break;
+        }
+
+        default:
+        {
+            print2("Some nameless god blesses you....");
+            Player.hp = max(Player.hp, Player.maxhp);
+            morewait();
+            print2("The altar crumbles to dust and blows away.");
+            Level->site[Player.x][Player.y].locchar = FLOOR;
+            Level->site[Player.x][Player.y].p_locf = L_NO_OP;
+            lset(Player.x, Player.y, CHANGED);
+            break;
+        }
+    }
+}
+
+const int player_has_priesthood_rank(const int deity)
+{
+    if ((((deity == ODIN) || (deity == ATHENA)) &&
+            (Player.alignment < 1)) ||
+            (((deity == SET) || (deity == HECATE)) &&
+             (Player.alignment > 1)) ||
+            ((deity == DRUID) && (abs(Player.alignment) > 10)))
+    {
+        print1("You have swerved from the One True Path!");
+        print2("Your deity is greatly displeased...");
+        Player.xp -= Player.level * Player.level;
+        Player.xp = max(0, Player.xp);
+    }
+    else if (Player.rank[PRIESTHOOD] == HIGHPRIEST)
+    {
+        return 0;
+    }
+    else if (Player.rank[PRIESTHOOD] == SPRIEST)
+    {
+        if (Player.level > Priestlevel[deity])
+        {
+            hp_req_test();
+        }
+        else
         {
             return 0;
         }
-        else if (Player.rank[PRIESTHOOD] == SPRIEST)
+    }
+    else if (Player.rank[PRIESTHOOD] == PRIEST)
+    {
+        if (Player.guildxp[PRIESTHOOD] >= 4000)
         {
-            if (Player.level > Priestlevel[deity])
-            {
-                hp_req_test();
-            }
-            else
-            {
-                return 0;
-            }
+            print1("An heavenly fanfare surrounds you!");
+            print2("Your deity raises you to the post of Senior Priest.");
+            hp_req_print();
+            Player.rank[PRIESTHOOD] = SPRIEST;
+            /* DAG learnclericalspells() starts with mprint() so don't need morewait */
+            /* morewait(); */
+            learnclericalspells(deity, SPRIEST);
         }
-        else if (Player.rank[PRIESTHOOD] == PRIEST)
+        else
         {
-            if (Player.guildxp[PRIESTHOOD] >= 4000)
-            {
-                print1("An heavenly fanfare surrounds you!");
-                print2("Your deity raises you to the post of Senior Priest.");
-                hp_req_print();
-                Player.rank[PRIESTHOOD] = SPRIEST;
-                /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                /* morewait(); */
-                learnclericalspells(deity, SPRIEST);
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        else if (Player.rank[PRIESTHOOD] == ACOLYTE)
-        {
-            if (Player.guildxp[PRIESTHOOD] >= 1500)
-            {
-                print1("A trumpet sounds in the distance.");
-                print2("Your deity raises you to the post of Priest.");
-                Player.rank[PRIESTHOOD] = PRIEST;
-                /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                /* morewait(); */
-                learnclericalspells(deity, PRIEST);
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        else if (Player.rank[PRIESTHOOD] == LAY)
-        {
-            if (Player.guildxp[PRIESTHOOD] >= 400)
-            {
-                print1("A mellifluous chime sounds from above the altar.");
-                print2("Your deity raises you to the post of Acolyte.");
-                Player.rank[PRIESTHOOD] = ACOLYTE;
-                /* DAG learnclericalspells() starts with mprint() so don't need morewait */
-                /* morewait(); */
-                learnclericalspells(deity, ACOLYTE);
-            }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
     }
+    else if (Player.rank[PRIESTHOOD] == ACOLYTE)
+    {
+        if (Player.guildxp[PRIESTHOOD] >= 1500)
+        {
+            print1("A trumpet sounds in the distance.");
+            print2("Your deity raises you to the post of Priest.");
+            Player.rank[PRIESTHOOD] = PRIEST;
+            /* DAG learnclericalspells() starts with mprint() so don't need morewait */
+            /* morewait(); */
+            learnclericalspells(deity, PRIEST);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (Player.rank[PRIESTHOOD] == LAY)
+    {
+        if (Player.guildxp[PRIESTHOOD] >= 400)
+        {
+            print1("A mellifluous chime sounds from above the altar.");
+            print2("Your deity raises you to the post of Acolyte.");
+            Player.rank[PRIESTHOOD] = ACOLYTE;
+            /* DAG learnclericalspells() starts with mprint() so don't need morewait */
+            /* morewait(); */
+            learnclericalspells(deity, ACOLYTE);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
 
-    return 1;
+int increase_priest_rank(int deity)
+{
+    int return_value = 1;
+
+    if (Player.rank[PRIESTHOOD] == 0)
+    {
+        player_has_no_priesthood_rank(deity);
+    }
+    else if (deity == Player.patron)
+    {
+        return_value = player_has_priesthood_rank(deity);
+    }
+
+    return return_value;
 }
 
 void answer_prayer(void)
