@@ -608,7 +608,7 @@ void maze_level (void)
         if (!gamestatusp(COMPLETED_ASTRAL))
         {
             findspace(&tx, &ty, -1);
-            Level->mlist = checkmalloc(sizeof(mltype));
+            Level->mlist = (mltype*)checkmalloc(sizeof(mltype));
             Level->mlist->next = NULL;
             Level->mlist->m = make_creature(mid);
             Level->mlist->m->x = tx;
@@ -621,7 +621,7 @@ void maze_level (void)
         if (VOLCANOLEVELS == Level->depth && !gamestatusp(COMPLETED_VOLCANO))
         {
             findspace(&tx, &ty, -1);
-            Level->mlist = checkmalloc(sizeof(mltype));
+            Level->mlist = (mltype*)checkmalloc(sizeof(mltype));
             Level->mlist->next = NULL;
             Level->mlist->m = make_creature(DEMON_EMP);
             Level->mlist->m->x = tx;

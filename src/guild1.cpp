@@ -85,11 +85,11 @@ void l_merc_guild(void)
                     morewait();
                     clearmsg();
                     /* gain shortsword */
-                    newitem = checkmalloc(sizeof(struct object));
+                    newitem = (object*)checkmalloc(sizeof(struct object));
                     *newitem = Objects[OB_SHORT_SWORD];
                     gain_item(newitem);
                     /* gain leather armor */
-                    newitem = checkmalloc(sizeof(struct object));
+                    newitem = (object*)checkmalloc(sizeof(struct object));
                     *newitem = Objects[OB_LEATHER];
                     gain_item(newitem);
                     cinema_scene("Your starting salary will be 500 AU per month paid into an account the",

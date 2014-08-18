@@ -735,8 +735,7 @@ void gain_level(void)
 }
 
 /* experience requirements */
-long expval(plevel)
-int plevel;
+long expval(int plevel)
 {
     switch (plevel)
     {

@@ -82,7 +82,7 @@ void change_level (char fromlevel, char tolevel, char rewrite_level)
 
     if (!thislevel)
     {
-        thislevel = checkmalloc(sizeof(levtype));
+        thislevel = (level*)checkmalloc(sizeof(levtype));
         clear_level(thislevel);
         Level = thislevel;
         Level->next = Dungeon;

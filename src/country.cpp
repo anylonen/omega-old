@@ -5,6 +5,7 @@
 
 #include "country.h"
 #include "glob.h"
+#include "level.h"
 
 /* loads the countryside level from the data file */
 void load_country(void)
@@ -183,7 +184,7 @@ void load_dlair (int empty, int populate)
     }
 
 #ifndef SAVE_LEVELS
-    Level = checkmalloc(sizeof(levtype));
+    Level = (level*)checkmalloc(sizeof(levtype));
 #else
     msdos_changelevel(TempLevel, 0, -1);
     Level = &TheLevel;
