@@ -165,5 +165,13 @@ struct player
 void player_regenerate_hp();
 void player_regenerate_mana();
 void player_regenerate_all();
+const long player_get_mana();
+void player_set_mana(const long amount);
+const long player_get_max_mana();
+void player_set_max_mana(const long amount);
+const int player_get_level();
+void player_set_level(const int amount);
+const int player_get_power();
+void player_set_power(const int amount);
 
 #endif
