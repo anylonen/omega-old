@@ -1,6 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <lua.hpp>
 #include "object.h"
 #include "monk.h"
 
@@ -8,7 +9,7 @@
 /* also monster immunity bits (2^n) */
 /* also damage types */
 #define NUMIMMUNITIES 14
-#define UNSTOPPABLE 0 
+#define UNSTOPPABLE 0
 #define NORMAL_DAMAGE 1
 #define FLAME 2
 #define COLD 3
@@ -165,13 +166,31 @@ struct player
 void player_regenerate_hp();
 void player_regenerate_mana();
 void player_regenerate_all();
+
 const long player_get_mana();
 void player_set_mana(const long amount);
+int lua_get_player_mana(lua_State* L);
+int lua_set_player_mana(lua_State* L);
+
 const long player_get_max_mana();
 void player_set_max_mana(const long amount);
-const int player_get_level();
-void player_set_level(const int amount);
+int lua_get_player_max_mana(lua_State* L);
+int lua_set_player_max_mana(lua_State* L);
+
 const int player_get_power();
 void player_set_power(const int amount);
+int lua_get_player_power(lua_State* L);
+int lua_set_player_power(lua_State* L);
 
+const long player_get_max_power();
+void player_set_max_power(const long amount);
+int lua_get_player_max_power(lua_State* L);
+int lua_set_player_max_power(lua_State* L);
+
+const int player_get_level();
+void player_set_level(const int amount);
+int lua_get_player_level(lua_State* L);
+int lua_set_player_level(lua_State* L);
+
+void register_lua_player_functions();
 #endif

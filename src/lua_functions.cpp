@@ -14,6 +14,17 @@ lua_State* get_luastate()
     return lua_state;
 }
 
+void debug(const char* message)
+{
+    lua_State* L = get_luastate();
+    lua_getglobal(L, "write_log");
+    lua_pushstring(L, message);
+    if(lua_pcall(L, 1, 0, 0) != 0)
+    {
+        bail(L, "Error while writing log");
+    }
+}
+
 void bail(lua_State* L, char* error_message)
 {
     fprintf(stderr, "\nFATAL ERROR:\n %s: %s\n\n", error_message, lua_tostring(L, -1));

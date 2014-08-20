@@ -301,6 +301,7 @@ int main(int argc, char* argv[])
         bail(L, "Cannot open omega.lua");
     }
 
+    register_lua_player_functions();
 #ifndef NOGETOPT
 
     while (( i = getopt( argc, argv, "dsh")) != -1)
