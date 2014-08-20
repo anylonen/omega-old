@@ -590,7 +590,7 @@ void l_casino(void)
                         }
                         else
                         {
-                            print1(( b == 0) ? "Red " : "Black ");
+                            print1(( b == 0) ? (char*)"Red " : (char*)"Black ");
                             mnumprint(a - 1);
                         }
                     }
@@ -617,7 +617,7 @@ void l_casino(void)
                     }
                     else
                     {
-                        print1((b == 0) ? "Red " : "Black ");
+                        print1((b == 0) ? (char*)"Red " : (char*)"Black ");
                         mnumprint(a - 1);
                     }
 

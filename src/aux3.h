@@ -18,9 +18,8 @@ void countrysearch( void );
 void default_maneuvers( void );
 void destroy_order( void );
 void hourly_check( void );
-void indoors_random_event( void );
-void outdoors_random_event( void );
 void showknownsites( int, int );
+void make_regular_checks(void);
 void tenminute_check( void );
 void terrain_check( int );
 

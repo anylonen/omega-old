@@ -25,6 +25,7 @@
 
 #include "screen.h"
 #include "glob.h"
+#include "clrgen.h"
 #include <ctype.h>
 #include <unistd.h>
 

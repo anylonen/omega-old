@@ -4,6 +4,10 @@
 /* omega.c */
 
 #include "omega.h"
+#include <lua.hpp>
+#include <lualib.h>
+#include <lauxlib.h>
+
 #include "glob.h"
 #if !defined(MSDOS_SUPPORTED_ANTIQUE)
 #include <signal.h>
@@ -20,6 +24,7 @@
 #endif
 
 #include "lua_functions.h"
+#include "player_class.h"
 
 /* most globals originate in omega.c */
 
@@ -264,12 +269,30 @@ void signalquit(int ignore)
     quit();
 }
 
+PlayerClass* playerclass;
+void init_game()
+{
+    playerclass = new PlayerClass();
+}
+
+void deinit_game()
+{
+    if(playerclass != NULL)
+    {
+        delete playerclass;
+        playerclass = NULL;
+    }
+}
+
 int main(int argc, char* argv[])
 {
     int continuing = 0;
     int count;
     int scores_only = 0;
     int i;
+
+    init_game();
+
     lua_State* L = get_luastate();
     luaL_openlibs(L);
 
@@ -510,6 +533,8 @@ int main(int argc, char* argv[])
 
     lua_close(L);
     L = 0;
+
+    deinit_game();
 }
 
 #ifndef MSDOS

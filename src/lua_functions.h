@@ -1,7 +1,7 @@
 #ifndef LUA_FUNCTIONS_H
 #define LUA_FUNCTIONS_H
 
-#include <lua.h>
+#include <lua.hpp>
 
 extern lua_State* lua_state;
 

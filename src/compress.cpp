@@ -21,6 +21,8 @@
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+#include <strings.h>
+#include <stdlib.h>
 #ifndef lint
 char copyright[] =
 "@(#) Copyright (c) 1985, 1986 The Regents of the University of California.\n\
@@ -504,8 +506,9 @@ void do_compression( int decomp, char *file )
     int overwrite = 1;	/* Do not overwrite unless given -f flag */
     char tempname[100];
     char **fileptr;
-    char *cp, *rindex();
     struct stat statbuf;
+    /* char *cp, *rindex(); */
+    char *cp; 
     void onintr(), oops();
 
     /* This bg check only works for sh. */
@@ -614,9 +617,17 @@ void do_compression( int decomp, char *file )
 		/* Generate output filename */
 		strcpy(ofname, *fileptr);
 #ifndef BSD4_2		/* Short filenames */
-		if ((cp=rindex(ofname,'/')) != NULL)	cp++;
-		else					cp = ofname;
-		if (strlen(cp) > 12) {
+        cp = rindex(ofname, '/');
+		if (cp != NULL)
+        {
+            cp++;
+        }
+		else
+        {
+            cp = ofname;
+        }
+
+        if (strlen(cp) > 12) {
 		    fprintf(stderr,"%s: filename too long to tack on Z\n",cp);
 		    fclose(infile);
 		    return;

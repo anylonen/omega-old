@@ -157,7 +157,7 @@ void populate_level(int monstertype)
         nummonsters += 20;
     }
 
-    head = tml = checkmalloc(sizeof(mltype));
+    head = tml = (mltype*)checkmalloc(sizeof(mltype));
 
     for (k = 0; k < nummonsters; k++)
     {

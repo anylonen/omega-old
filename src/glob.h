@@ -20,6 +20,8 @@
 
 #include "extern.h"
 
+#include "player_class.h"
+
 extern lua_State* lua_state;
 
 #ifdef DEBUG /* Added by DG, naturally. */
@@ -305,5 +307,7 @@ extern int boot_ids[30];
 
 extern int deepest[E_MAX + 1];
 extern int level_seed[E_MAX + 1];
+
+extern PlayerClass* playerclass;
 
 #endif /* INCLUDED_GLOB_H */

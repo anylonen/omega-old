@@ -4,115 +4,115 @@
 #include "item.h"
 #include "glob.h"
 
-/* make a random new object, returning pointer */
+/* make a random new_object object, returning pointer */
 pob create_object(int itemlevel)
 {
-    pob new;
+    pob new_object;
     int  r;
     int ok = FALSE;
 
     while (! ok)
     {
-        new = ((pob) checkmalloc(sizeof(objtype)));
+        new_object = ((pob) checkmalloc(sizeof(objtype)));
         r = random_range(135);
 
         if (r < 20)
         {
-            make_thing(new, -1);
+            make_thing(new_object, -1);
         }
         else if (r < 40)
         {
-            make_food(new, -1);
+            make_food(new_object, -1);
         }
         else if (r < 50)
         {
-            make_scroll(new, -1);
+            make_scroll(new_object, -1);
         }
         else if (r < 60)
         {
-            make_potion(new, -1);
+            make_potion(new_object, -1);
         }
         else if (r < 70)
         {
-            make_weapon(new, -1);
+            make_weapon(new_object, -1);
         }
         else if (r < 80)
         {
-            make_armor(new, -1);
+            make_armor(new_object, -1);
         }
         else if (r < 90)
         {
-            make_shield(new, -1);
+            make_shield(new_object, -1);
         }
         else if (r < 100)
         {
-            make_stick(new, -1);
+            make_stick(new_object, -1);
         }
         else if (r < 110)
         {
-            make_boots(new, -1);
+            make_boots(new_object, -1);
         }
         else if (r < 120)
         {
-            make_cloak(new, -1);
+            make_cloak(new_object, -1);
         }
         else if (r < 130)
         {
-            make_ring(new, -1);
+            make_ring(new_object, -1);
         }
         else
         {
-            make_artifact(new, -1);
+            make_artifact(new_object, -1);
         }
 
         /* not ok if object is too good for level, or if unique and already made */
         /* 1/100 chance of finding object if too good for level */
-        ok = ((new->uniqueness < UNIQUE_MADE) &&
-              ((new->level < itemlevel + random_range(3))
+        ok = ((new_object->uniqueness < UNIQUE_MADE) &&
+              ((new_object->level < itemlevel + random_range(3))
                || (random_range(100) == 23)));
 
         if (!ok)
         {
-            free_obj( new, TRUE );
+            free_obj( new_object, TRUE );
         }
     }
 
-    if (new->uniqueness == UNIQUE_UNMADE)
+    if (new_object->uniqueness == UNIQUE_UNMADE)
     {
-        Objects[new->id].uniqueness = UNIQUE_MADE;
+        Objects[new_object->id].uniqueness = UNIQUE_MADE;
     }
 
-    return (new);
+    return (new_object);
 }
 
-void make_cash(pob new, int level)
+void make_cash(pob new_object, int level)
 {
-    *new = Objects[CASHID];
-    new->basevalue = random_range(level * level + 10) + 1; /* aux is AU value */
-    new->objstr = cashstr();
-    new->cursestr = new->truename = new->objstr;
+    *new_object = Objects[CASHID];
+    new_object->basevalue = random_range(level * level + 10) + 1; /* aux is AU value */
+    new_object->objstr = cashstr();
+    new_object->cursestr = new_object->truename = new_object->objstr;
 }
 
-void make_food(pob new, int id)
+void make_food(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMFOODS);
     }
 
-    *new = Objects[FOODID + id];
+    *new_object = Objects[FOODID + id];
 }
 
 
-void make_corpse(pob new, pmt m)
+void make_corpse(pob new_object, pmt m)
 {
-    *new = Objects[CORPSEID];
-    new->charge = m->id;
-    new->weight = m->corpseweight;
-    new->basevalue = m->corpsevalue;
-    new->known = 2;
-    new->objstr = m->corpsestr;
-    new->truename = new->cursestr = new->objstr;
+    *new_object = Objects[CORPSEID];
+    new_object->charge = m->id;
+    new_object->weight = m->corpseweight;
+    new_object->basevalue = m->corpsevalue;
+    new_object->known = 2;
+    new_object->objstr = m->corpsestr;
+    new_object->truename = new_object->cursestr = new_object->objstr;
 
     if ( m_statusp(m, ALLOC ) )
     {
@@ -124,7 +124,7 @@ void make_corpse(pob new, pmt m)
         m->corpsestr = Monsters[m->id].corpsestr;
         m_status_reset( m, ALLOC );
         /* DAG level not otherwise used for corpses.  Use to hold ALLOC info. */
-        new->level |= ALLOC;
+        new_object->level |= ALLOC;
     }
 
     /* DG I_CANNIBAL not implemented... fall through to code in I_CORPSE */
@@ -133,275 +133,275 @@ void make_corpse(pob new, pmt m)
 
     if ((m->monchar & 0xff) == '@')
     {
-        new->usef = I_CANNIBAL;
+        new_object->usef = I_CANNIBAL;
     }
     else
 #endif
         if (m_statusp(m, EDIBLE))
         {
-            new->usef = I_FOOD;
-            new->aux = 6;
+            new_object->usef = I_FOOD;
+            new_object->aux = 6;
         }
         else if (m_statusp(m, POISONOUS))
         {
-            new->usef = I_POISON_FOOD;
+            new_object->usef = I_POISON_FOOD;
         }
     /* Special corpse-eating effects */
         else switch (m->id)
             {
                 case TSETSE: /*tse tse fly */
                 case TORPOR: /*torpor beast */
-                    new->usef = I_SLEEP_SELF;
+                    new_object->usef = I_SLEEP_SELF;
                     break;
 
                 case NASTY:
-                    new->usef = I_INVISIBLE;
+                    new_object->usef = I_INVISIBLE;
                     break;
 
                 case BLIPPER:
-                    new->usef = I_TELEPORT;
+                    new_object->usef = I_TELEPORT;
                     break;
 
                 case EYE: /* floating eye -- it's traditional.... */
-                    new->usef = I_CLAIRVOYANCE;
+                    new_object->usef = I_CLAIRVOYANCE;
                     break;
 
                 case FUZZY: /*astral fuzzy */
-                    new->usef = I_DISPLACE;
+                    new_object->usef = I_DISPLACE;
                     break;
 
                 case SERV_LAW:
-                    new->usef = I_CHAOS;
+                    new_object->usef = I_CHAOS;
                     break;
 
                 case SERV_CHAOS:
-                    new->usef = I_LAW;
+                    new_object->usef = I_LAW;
                     break;
 
                 case ASTRAL_VAMP: /* astral vampire */
-                    new->usef = I_ENCHANT;
+                    new_object->usef = I_ENCHANT;
                     break;
 
                 case MANABURST:
-                    new->usef = I_SPELLS;
+                    new_object->usef = I_SPELLS;
                     break;
 
                 case RAKSHASA:
-                    new->usef = I_TRUESIGHT;
+                    new_object->usef = I_TRUESIGHT;
                     break;
                     /* DG fall through to code in I_CORPSE and special case there */
 #if 0 /* WDT HACK? */
 
                 case BEHEMOTH:
-                    new->usef = I_HEAL;
+                    new_object->usef = I_HEAL;
                     break;
 
                 case UNICORN:
-                    new->usef = I_NEUTRALIZE_POISON;
+                    new_object->usef = I_NEUTRALIZE_POISON;
                     break;
 #endif
 
                 case COMA: /*coma beast */
-                    new->usef = I_ALERT;
+                    new_object->usef = I_ALERT;
                     break;
                     /* DG I_INEDIBLE not implemented... fall through to code in I_CORPSE */
 #if 0 /* WDT HACK: yawn. */
 
                 default:
-                    new->usef = I_INEDIBLE;
+                    new_object->usef = I_INEDIBLE;
                     break;
 #endif
             }
 }
 
-void make_ring(pob new, int id)
+void make_ring(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMRINGS);
     }
 
-    *new = Objects[RINGID + id];
+    *new_object = Objects[RINGID + id];
 
-    if (new->blessing == 0)
+    if (new_object->blessing == 0)
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 
-    if (new->plus == 0)
+    if (new_object->plus == 0)
     {
-        new->plus = itemplus() + 1;
+        new_object->plus = itemplus() + 1;
     }
 
-    if (new->blessing < 0)
+    if (new_object->blessing < 0)
     {
-        new->plus = -1 - abs(new->plus);
+        new_object->plus = -1 - abs(new_object->plus);
     }
 }
 
-void make_thing (pob new, int id)
+void make_thing (pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMTHINGS);
     }
 
-    *new = Objects[THINGID + id];
+    *new_object = Objects[THINGID + id];
 
-    if (0 == strcmp(new->objstr, "grot"))
+    if (0 == strcmp(new_object->objstr, "grot"))
     {
-        new->objstr = grotname();
-        new->truename = new->cursestr = new->objstr;
+        new_object->objstr = grotname();
+        new_object->truename = new_object->cursestr = new_object->objstr;
     }
-    else if (new->id >= CARDID && new->id < (CARDID + NUMCARDS))
+    else if (new_object->id >= CARDID && new_object->id < (CARDID + NUMCARDS))
     {
-        switch (new->id)
+        switch (new_object->id)
         {
             case OB_DEBIT_CARD:
-                new->aux = bank_random_account_number();
+                new_object->aux = bank_random_account_number();
                 break;
 
             case OB_CREDIT_CARD:
-                new->charge = random_range(250) + random_range(250) + random_range(250);
+                new_object->charge = random_range(250) + random_range(250) + random_range(250);
                 break;
 
             case OB_PREPAID_CARD:
-                new->charge = random_range(50) + random_range(50) + random_range(50);
+                new_object->charge = random_range(50) + random_range(50) + random_range(50);
                 break;
 
             case OB_SMART_CARD:
-                new->aux = bank_random_account_number();
-                new->charge = random_range(500) + random_range(500) + random_range(500);
+                new_object->aux = bank_random_account_number();
+                new_object->charge = random_range(500) + random_range(500) + random_range(500);
                 break;
         }
     }
 }
 
 
-void make_scroll(pob new, int id)
+void make_scroll(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMSCROLLS);
     }
 
-    *new = Objects[SCROLLID + id];
+    *new_object = Objects[SCROLLID + id];
 
     /* if a scroll of spells, aux is the spell id in Spells */
-    if (new->id == OB_SPELLS_SCROLL)
+    if (new_object->id == OB_SPELLS_SCROLL)
     {
-        new->aux = random_range(NUMSPELLS);
+        new_object->aux = random_range(NUMSPELLS);
     }
 }
 
-void make_potion(pob new, int id)
+void make_potion(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMPOTIONS);
     }
 
-    *new = Objects[POTIONID + id];
+    *new_object = Objects[POTIONID + id];
 
-    if (new->plus == 0)
+    if (new_object->plus == 0)
     {
-        new->plus = itemplus();
+        new_object->plus = itemplus();
     }
 }
 
-void make_weapon(pob new, int id)
+void make_weapon(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMWEAPONS);
     }
 
-    *new = Objects[WEAPONID + id];
+    *new_object = Objects[WEAPONID + id];
 
     if ((id == 28) || (id == 29)) /* bolt or arrow */
     {
-        new->number = random_range(20) + 1;
+        new_object->number = random_range(20) + 1;
     }
 
-    if (new->blessing == 0)
+    if (new_object->blessing == 0)
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 
-    if (new->plus == 0)
+    if (new_object->plus == 0)
     {
-        new->plus = itemplus();
+        new_object->plus = itemplus();
 
-        if (new->blessing < 0)
+        if (new_object->blessing < 0)
         {
-            new->plus = -1 - abs(new->plus);
+            new_object->plus = -1 - abs(new_object->plus);
         }
-        else if (new->blessing > 0)
+        else if (new_object->blessing > 0)
         {
-            new->plus = 1 + abs(new->plus);
+            new_object->plus = 1 + abs(new_object->plus);
         }
     }
 }
 
-void make_shield(pob new, int id)
+void make_shield(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMSHIELDS);
     }
 
-    *new = Objects[SHIELDID + id];
+    *new_object = Objects[SHIELDID + id];
 
-    if (new->plus == 0)
+    if (new_object->plus == 0)
     {
-        new->plus = itemplus();
+        new_object->plus = itemplus();
     }
 
-    if (new->blessing == 0)
+    if (new_object->blessing == 0)
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 
-    if (new->blessing < 0)
+    if (new_object->blessing < 0)
     {
-        new->plus = -1 - abs(new->plus);
+        new_object->plus = -1 - abs(new_object->plus);
     }
-    else if (new->blessing > 0)
+    else if (new_object->blessing > 0)
     {
-        new->plus = 1 + abs(new->plus);
+        new_object->plus = 1 + abs(new_object->plus);
     }
 }
 
-void make_armor(pob new, int id)
+void make_armor(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMARMOR);
     }
 
-    *new = Objects[ARMORID + id];
+    *new_object = Objects[ARMORID + id];
 
-    if (new->plus == 0)
+    if (new_object->plus == 0)
     {
-        new->plus = itemplus();
+        new_object->plus = itemplus();
     }
 
-    if (new->blessing == 0)
+    if (new_object->blessing == 0)
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 
-    if (new->blessing < 0)
+    if (new_object->blessing < 0)
     {
-        new->plus = -1 - abs(new->plus);
+        new_object->plus = -1 - abs(new_object->plus);
     }
-    else if (new->blessing > 0)
+    else if (new_object->blessing > 0)
     {
-        new->plus = 1 + abs(new->plus);
+        new_object->plus = 1 + abs(new_object->plus);
     }
 }
 
-void make_cloak(pob new, int id)
+void make_cloak(pob new_object, int id)
 {
     if (id == -1)
     {
@@ -409,46 +409,46 @@ void make_cloak(pob new, int id)
     }
 
     Objects[OB_CLOAK_PROTECT].plus = 2;
-    *new = Objects[CLOAKID + id];
+    *new_object = Objects[CLOAKID + id];
 
-    if (new->blessing == 0)
+    if (new_object->blessing == 0)
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 }
 
-void make_boots(pob new, int id)
+void make_boots(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMBOOTS);
     }
 
-    *new = Objects[BOOTID + id];
+    *new_object = Objects[BOOTID + id];
 
-    if (new->blessing == 0)
+    if (new_object->blessing == 0)
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 }
 
-void make_stick(pob new, int id)
+void make_stick(pob new_object, int id)
 {
     if (id == -1)
     {
         id = random_range(NUMSTICKS);
     }
 
-    *new = Objects[STICKID + id];
-    new->charge = itemcharge();
+    *new_object = Objects[STICKID + id];
+    new_object->charge = itemcharge();
 
-    if (new->blessing == 0)
+    if (new_object->blessing == 0)
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 }
 
-void make_artifact(pob new, int id)
+void make_artifact(pob new_object, int id)
 {
     if (id == -1)
         do
@@ -457,11 +457,11 @@ void make_artifact(pob new, int id)
         }
         while (Objects[id].uniqueness >= UNIQUE_MADE);
 
-    *new = Objects[ARTIFACTID + id];
+    *new_object = Objects[ARTIFACTID + id];
 
-    if ( new->id == OB_HOLDING )
+    if ( new_object->id == OB_HOLDING )
     {
-        new->blessing = itemblessing();
+        new_object->blessing = itemblessing();
     }
 }
 

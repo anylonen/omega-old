@@ -60,7 +60,7 @@ void summon (int blessing, int id)
 
         Level->site[x][y].creature->x = x;
         Level->site[x][y].creature->y = y;
-        tml = checkmalloc(sizeof(mltype));
+        tml = (mltype*)checkmalloc(sizeof(mltype));
         tml->m = Level->site[x][y].creature;
 
         if (blessing > 0)

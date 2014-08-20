@@ -18,21 +18,21 @@ add_executable(genclr ${GENCLR_SOURCES})
 
 # Generate clrgen.h and clrgen.c
 file(GLOB CLRGEN_H ${CMAKE_SOURCE_DIR}/src/*.h)
-file(GLOB CLRGEN_C ${CMAKE_SOURCE_DIR}/src/*.c)
+file(GLOB CLRGEN_C ${CMAKE_SOURCE_DIR}/src/*.cpp)
 list(APPEND CLRGEN_SOURCES ${CLRGEN_H} ${CLRGEN_C})
 
 set(GENCLR_PRG ${CMAKE_CURRENT_SOURCE_DIR}/genclr)
 
 add_custom_command(
-    OUTPUT clrgen.c clrgen.h
-    COMMAND ${CMAKE_C_COMPILER} -E -DOMEGA_CLRGEN -I${LUAJIT_INCLUDE_DIR} -I${CURSES_INCLUDE_DIR} ${CLRGEN_SOURCES} | ${GENCLR_PRG} clrgen.c clrgen.h 
+    OUTPUT clrgen.cpp clrgen.h
+    COMMAND ${CMAKE_C_COMPILER} -E -DOMEGA_CLRGEN -I${LUAJIT_INCLUDE_DIR} -I${CURSES_INCLUDE_DIR} ${CLRGEN_SOURCES} | ${GENCLR_PRG} clrgen.cpp clrgen.h 
     COMMAND ${CMAKE_COMMAND} -E rename clrgen.h ${CMAKE_SOURCE_DIR}/src/clrgen.h
-    COMMAND ${CMAKE_COMMAND} -E rename clrgen.c ${CMAKE_SOURCE_DIR}/src/clrgen.c
+    COMMAND ${CMAKE_COMMAND} -E rename clrgen.cpp ${CMAKE_SOURCE_DIR}/src/clrgen.cpp
     VERBATIM)
 
 add_custom_target(
     clrgen ALL
-    DEPENDS clrgen.c
+    DEPENDS clrgen.cpp
     VERBATIM)
 
 add_dependencies(clrgen genclr)

@@ -653,7 +653,7 @@ int ok_outdated(int version)
             break;
 
         case 9000:
-            /* DAG - 9000 is the re-numbered 90, for the new version numbering system. */
+            /* DAG - 9000 is the re-numbered 90, for the new_object version numbering system. */
             print1("Converting version 0.90 savefile to current.");
             morewait();
             return TRUE;
@@ -1056,25 +1056,25 @@ pob restore_item(FILE* fd, int version)
 
 pol restore_itemlist(FILE* fd, int version)
 {
-    pol ol = NULL, cur = NULL, new = NULL;
+    pol ol = NULL, cur = NULL, new_object = NULL;
     int i, numitems, firsttime = TRUE;
     fread((char*)&numitems, sizeof(int), 1, fd);
 
     for (i = 0; i < numitems; i++)
     {
-        new = ((pol) checkmalloc(sizeof(oltype)));
-        new->thing = restore_item(fd, version);
-        new->next = NULL;
+        new_object = ((pol) checkmalloc(sizeof(oltype)));
+        new_object->thing = restore_item(fd, version);
+        new_object->next = NULL;
 
         if (firsttime == TRUE)
         {
-            ol = cur = new;
+            ol = cur = new_object;
             firsttime = FALSE;
         }
         else
         {
-            cur->next = new;
-            cur = new;
+            cur->next = new_object;
+            cur = new_object;
         }
     }
 

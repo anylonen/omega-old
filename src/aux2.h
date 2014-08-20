@@ -7,7 +7,7 @@
 
 /* aux2.c functions */
 
-long expval( int );
+long expval( int plevel );
 long item_value( pob );
 long true_item_value( pob );
 char* actionlocstr( char );
