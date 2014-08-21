@@ -369,7 +369,7 @@ void l_trap_manadrain(void)
     Level->site[Player.x][Player.y].locchar = TRAP;
     lset(Player.x, Player.y, CHANGED);
 
-    if (Player.mana == 0)
+    if (player_get_mana() == 0)
     {
         if (random_range(10) == 3)
         {
@@ -379,7 +379,7 @@ void l_trap_manadrain(void)
             Level->site[Player.x][Player.y].locchar = FLOOR;
             Level->site[Player.x][Player.y].p_locf = L_NO_OP;
             lset(Player.x, Player.y, CHANGED);
-            Player.mana = calcmana();
+            player_set_mana(calcmana());
         }
         else
         {
@@ -392,13 +392,13 @@ void l_trap_manadrain(void)
         mprint("You feel drained.");
         morewait();
 
-        while (Player.mana > 1)
+        while (player_get_mana() > 1)
         {
-            Player.mana /= 2;
+            player_set_mana(player_get_mana() / 2);
             dataprint();
         }
 
-        Player.mana = 0;
+        player_set_mana(0);
         dispel(-1);
     }
 }

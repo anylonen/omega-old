@@ -304,7 +304,7 @@ int check_sacrilege(int deity)
                         Player.maxhp = Player.hp = Player.con;
                         print2("Your power is reduced by the blast!!!");
                         Player.pow = Player.maxpow = Player.maxpow / 3;
-                        Player.mana = min(Player.mana, calcmana());
+                        player_set_mana(min(player_get_mana(), calcmana()));
                     }
                 }
 

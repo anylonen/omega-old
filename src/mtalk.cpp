@@ -62,7 +62,7 @@ void m_talk_druid(pmt m)
             {
                 mprint("You take part in today's holy celebration of balance...");
                 Player.alignment = 0;
-                Player.mana = calcmana();
+                player_set_mana(calcmana());
 
                 if (Player.patron == DRUID)
                 {
@@ -89,7 +89,7 @@ void m_talk_druid(pmt m)
                 if (Player.patron == DRUID)
                 {
                     Player.alignment = 0;
-                    Player.mana = calcmana();
+                    player_set_mana(calcmana());
                 }
                 else
                 {
@@ -739,7 +739,7 @@ void m_talk_gf(pmt m)
 
     mprint("In a flash of sweet-smelling light, the fairy vanishes....");
     Player.hp = max(Player.hp, Player.maxhp);
-    Player.mana = max(Player.mana, calcmana());
+    player_set_mana(max(player_get_mana(), calcmana()));
     mprint("You feel mellow.");
     m_vanish(m);
 }
@@ -1138,7 +1138,7 @@ void m_talk_prime(pmt m)
                 print1("The blue sparks strike you! You feel enhanced!");
                 print2("You feel more experienced....");
                 Player.pow += Player.rank[CIRCLE];
-                Player.mana += calcmana();
+                player_set_mana(player_get_mana() + calcmana());
                 gain_experience(1000);
                 m_vanish(m);
             }

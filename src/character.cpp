@@ -125,7 +125,8 @@ int initplayer(void)
     if (!loaded)
     {
         Player.hp = Player.maxhp = Player.maxcon;
-        Player.mana = Player.maxmana = calcmana();
+        player_set_mana(calcmana());
+        Player.maxmana = calcmana();
         Player.click = 1;
         strcpy(Player.meleestr, "CCBC");
     }
@@ -242,14 +243,6 @@ void save_omegarc(void)
 
     change_to_game_perms();
 }
-
-
-
-long calcmana(void)
-{
-    return (Player.pow * (long)(Player.level + 1));
-}
-
 
 /*  npcbehavior digits 1234
 
@@ -1111,7 +1104,8 @@ void omegan_character_stats(void)
         Player.cash = random_range(100) + random_range(100) +
                       random_range(100) + random_range(100) + random_range(100);
         Player.hp = Player.maxhp = Player.con;
-        Player.mana = Player.maxmana = calcmana();
+        player_set_mana(calcmana());
+        Player.maxmana = calcmana();
         calc_melee();
         dataprint();
 #if REROLLS == -1

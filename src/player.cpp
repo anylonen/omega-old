@@ -1,6 +1,16 @@
 #include "player.h"
 #include "glob.h"
 
+long calcmana(void)
+{
+    lua_State* L = get_luastate();
+    lua_getglobal(L, "player_calculate_mana");
+    lua_pcall(L, 0, 1, 0);
+    const long amount = (long)lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    return amount;
+}
+
 void player_regenerate_hp()
 {
     if ((Player.status[DISEASED] == 0) && (Player.hp < Player.maxhp))
@@ -143,6 +153,28 @@ int lua_player_set_level(lua_State* L)
     return 0;
 }
 
+const int player_get_status_id(std::string status_name)
+{
+    lua_State* L = get_luastate();
+    lua_getglobal(L, "player_get_status_id");
+    lua_pushstring(L, status_name.c_str());
+    lua_pcall(L, 1, 1, 0);
+    const int id = lua_tonumber(L, -1);
+    lua_pop(L, 1);
+    return id;
+}
+
+void player_set_status(std::string status_name, const int value)
+{
+    const int id = player_get_status_id(status_name);
+    Player.status[id] = value;
+}
+
+const int player_get_status(std::string status_name)
+{
+    const int id = player_get_status_id(status_name);
+    return Player.status[id];
+}
 
 void register_lua_player_functions()
 {

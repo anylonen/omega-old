@@ -106,7 +106,7 @@ void editstats(void)
                         break;
 
                     case 9:
-                        Player.mana                = num;
+                        player_set_mana(num);
                         break;
 
                     case 10:

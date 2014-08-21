@@ -1017,7 +1017,7 @@ void l_sorcerors(void)
     if (Player.rank[CIRCLE] == -1)
     {
         print2("Fool! Didn't we tell you to go away?");
-        Player.mana = 0;
+        player_set_mana(0);
         dataprint();
     }
     else  while (! done)
@@ -1242,9 +1242,9 @@ void l_sorcerors(void)
                         Player.cash -= fee;
                         total = calcmana();
 
-                        while (Player.mana < total)
+                        while (player_get_mana() < total)
                         {
-                            Player.mana++;
+                            player_set_mana(player_get_mana() + 1);
                             dataprint();
                         }
 

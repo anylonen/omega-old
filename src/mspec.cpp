@@ -165,7 +165,8 @@ void m_sp_ghost(pmt m)
 
         if (! p_immune(FEAR))
         {
-            Player.status[AFRAID] += m->level;
+            const int amount_of_fear = player_get_status("AFRAID") + m->level;
+            player_set_status("AFRAID", amount_of_fear);
         }
         else
         {
@@ -400,7 +401,7 @@ void m_sp_eater(pmt m)
         {
             mprint("A strange numbing sensation comes over you...");
             morewait();
-            Player.mana = Player.mana / 2;
+            player_set_mana(player_get_mana() / 2);
 
             if (random_range(4))
             {
@@ -620,10 +621,10 @@ void m_sp_servant(pmt m)
 
 void m_sp_av(pmt m)
 {
-    if (Player.mana > 0)
+    if (player_get_mana() > 0)
     {
         mprint("You feel a sudden loss of mana!");
-        Player.mana -= (max(0, 10 - distance(m->x, m->y, Player.x, Player.y)));
+        player_set_mana(player_get_mana() - (max(0, 10 - distance(m->x, m->y, Player.x, Player.y))));
         dataprint();
     }
 }
@@ -761,13 +762,13 @@ void m_sp_mb(pmt m)
             /* DAG -- need calc_melee/calcmana here, because of new stats */
             calc_melee();
             Player.maxmana = calcmana();
-            Player.mana = min( Player.mana, Player.maxmana );
+            player_set_mana(min( player_get_mana(), Player.maxmana ));
         }
         else
         {
             mprint("You feel toasty warm inside!");
             Player.pow++;
-            Player.mana = max(Player.mana, calcmana());
+            player_set_mana(max(player_get_mana(), calcmana()));
             Player.hp = max(Player.hp, ++Player.maxhp);
         }
 

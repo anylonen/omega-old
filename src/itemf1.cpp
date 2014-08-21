@@ -404,7 +404,7 @@ void i_azoth(pob o)
         {
             heal(10);
             cleanse(1);
-            Player.mana = calcmana() * 3;
+            player_set_mana(calcmana() * 3);
             toggle_item_use(TRUE);
             Player.str = (Player.maxstr++) * 3;
             toggle_item_use(FALSE);
@@ -572,7 +572,7 @@ void i_stim(pob o)
 void i_pow(pob o)
 {
     mprint("You feel a surge of mystic power!");
-    Player.mana = 2 * calcmana();
+    player_set_mana(calcmana() * 2);
 }
 
 void i_poison_food(pob o)

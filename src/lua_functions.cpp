@@ -14,11 +14,11 @@ lua_State* get_luastate()
     return lua_state;
 }
 
-void debug(const char* message)
+void debug(std::string message)
 {
     lua_State* L = get_luastate();
     lua_getglobal(L, "write_log");
-    lua_pushstring(L, message);
+    lua_pushstring(L, message.c_str());
     if(lua_pcall(L, 1, 0, 0) != 0)
     {
         bail(L, "Error while writing log");

@@ -861,7 +861,7 @@ void wish(int blessing)
     if (strcmp(wishstr, "Power") == 0)
     {
         print2("You feel a sudden surge of energy");
-        Player.mana = calcmana() * 10;
+        player_set_mana(calcmana() * 10);
     }
     else if (strcmp(wishstr, "Skill") == 0)
     {

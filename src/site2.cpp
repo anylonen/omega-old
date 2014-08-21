@@ -465,7 +465,7 @@ void l_adept(void)
             Player.xp = 0;
             Player.level = 0;
             Player.hp = Player.maxhp = Player.con;
-            Player.mana = calcmana();
+            player_set_mana(calcmana());
             print2("You suddenly feel very inexperienced.");
             dataprint();
             morewait();
@@ -497,7 +497,7 @@ void l_adept(void)
         print2("and clears....");
         morewait();
         Player.hp = Player.maxhp;
-        Player.mana = calcmana();
+        player_set_mana(calcmana());
         change_environment(E_ABYSS);
     }
 }

@@ -1,6 +1,7 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
+#include <string>
 #include "monster.h"
 #include "symbol.h"
 
@@ -33,8 +34,8 @@ int move_slot( int, int, int );
 int stillonblock( void );
 void blankoutspot( int, int );
 void blotspot( int, int );
-void buffercycle( char* );
-int bufferappend( char* );
+void buffercycle(const char* s);
+int bufferappend(const char* s);
 void bufferprint( void );
 void checkclear( void );
 void clear_if_necessary( void );
@@ -79,24 +80,24 @@ void menuaddch( char );
 void menuclear( void );
 void menulongprint( long );
 void menunumprint( int );
-void menuprint( char* );
+void menuprint(std::string message);
 void menuspellprint( int );
 void showmenu( void );
 void mlongprint( long );
 void mnumprint( int );
 void morewait( void );
-void mprint( char* );
-void nprint1( char* );
-void nprint2( char* );
-void nprint3( char* );
+void mprint(std::string message);
+void nprint1(std::string message);
+void nprint2(std::string message);
+void nprint3(std::string message);
 void phaseprint( void );
 void bank_init( void );
 void plotchar( Symbol, int, int );
 void plotmon( struct monster* );
 void plotspot( int, int, int );
-void print1( char* );
-void print2( char* );
-void print3( char* );
+void print1(std::string message);
+void print2(std::string message);
+void print3(std::string message);
 void putspot( int, int, Symbol );
 void redraw( void );
 void screencheck( int, int );

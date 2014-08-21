@@ -1237,7 +1237,7 @@ short dump_basic( FILE* dumpfile )
         *cp++ = ' ';
     }
 
-    curcol += sprintf( cp, "Mana     : %5ld [%ld]", Player.mana,  Player.maxmana );
+    curcol += sprintf( cp, "Mana     : %5ld [%ld]", player_get_mana(),  Player.maxmana );
     cp = strrchr( dump_buf, '\0' );
 
     for ( ; curcol < 57; curcol++ )

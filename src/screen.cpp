@@ -462,8 +462,9 @@ void erase_level(void)
 }
 
 /* direct print to first msg line */
-void print1(char* s)
+void print1(std::string message)
 {
+    const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
     {
         buffercycle(s);
@@ -474,8 +475,9 @@ void print1(char* s)
 }
 
 /* for run on-messages -- print1 clears first.... */
-void nprint1(char* s)
+void nprint1(std::string message)
 {
+    const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
     {
         if (bufferappend(s))
@@ -487,8 +489,9 @@ void nprint1(char* s)
 }
 
 /* direct print to second msg line */
-void print2(char* s)
+void print2(std::string message)
 {
+    const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
     {
         buffercycle(s);
@@ -499,8 +502,9 @@ void print2(char* s)
 }
 
 /* for run on-messages -- print2 clears first.... */
-void nprint2(char* s)
+void nprint2(std::string message)
 {
+    const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
     {
         if (bufferappend(s))
@@ -516,8 +520,9 @@ void nprint2(char* s)
 /* WDT: it's also typically used for messages intended to persist a while.
  * Thus I'm having print3 save its input in a global variable which other
  * things can use. */
-void print3 (char* s)
+void print3(std::string message)
 {
+    const char* s = message.c_str();
     if (!gamestatusp(SUPPRESS_PRINTING))
     {
         buffercycle(s);
@@ -529,8 +534,9 @@ void print3 (char* s)
 }
 
 /* for run on-messages -- print3 clears first.... */
-void nprint3(char* s)
+void nprint3(std::string message)
 {
+    const char* s = message.c_str();
     if (!gamestatusp(SUPPRESS_PRINTING))
     {
         if (bufferappend(s))
@@ -544,8 +550,9 @@ void nprint3(char* s)
 
 /* prints wherever cursor is in window, but checks to see if
 it should morewait and clear window */
-void mprint(char* s)
+void mprint(std::string message)
 {
+    const char* s = message.c_str();
     int x, y;
 
     if (! gamestatusp(SUPPRESS_PRINTING))
@@ -1446,7 +1453,7 @@ void dataprint(void)
     /* WDT HACK: I should make these fields spaced and appropriately justified.
      * Maybe I don't feel like it right now. */
     wprintw(Dataw, "Hp:%d/%d Mana:%ld/%ld Au:%ld Level:%d/%ld Carry:%d/%d \n",
-            Player.hp, Player.maxhp, Player.mana, Player.maxmana, Player.cash,
+            Player.hp, Player.maxhp, player_get_mana(), Player.maxmana, Player.cash,
             Player.level, Player.xp, Player.itemweight, Player.maxweight);
     wprintw(Dataw, "Str:%d/%d Con:%d/%d Dex:%d/%d Agi:%d/%d Int:%d/%d Pow:%d/%d   ",
             Player.str, Player.maxstr, Player.con, Player.maxcon,
@@ -1580,8 +1587,9 @@ void menuspellprint(int i)
     wprintw(Menuw, "(%d)\n", Spells[i].powerdrain);
 }
 
-void menuprint(char* s)
+void menuprint(std::string message)
 {
+    const char* s = message.c_str(); 
     int x, y;
     getyx(Menuw, y, x);
 
@@ -1857,7 +1865,7 @@ static long input_number (WINDOW* w)
 /* reads a positive number up to 999999 */
 /* WDT: now asks for the number, and receives it through the cinema
  * interface.  Returns ABORT (-1) if aborted. */
-long parsenum (char* message)
+long parsenum(char* message)
 {
     int number[8];
     int place = -1;
@@ -2670,7 +2678,7 @@ void display_stat_slot(int slot)
             break;
 
         case 9:
-            wprintw(Showline[slot], "-- Mana ....... [%d]: ", Player.mana);
+            wprintw(Showline[slot], "-- Mana ....... [%d]: ", player_get_mana());
             break;
 
         case 10:
@@ -2760,7 +2768,7 @@ void clear_if_necessary(void)
 
 int bufferpos = 0;
 
-void buffercycle(char* s)
+void buffercycle(const char* s)
 {
     strcpy(Stringbuffer[bufferpos++], s);
 
@@ -2770,7 +2778,7 @@ void buffercycle(char* s)
     }
 }
 
-int bufferappend(char* s)
+int bufferappend(const char* s)
 {
     int pos = bufferpos - 1;
 

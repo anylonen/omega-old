@@ -377,10 +377,10 @@ void minute_status_check(void)
 
     if (Player.status[REGENERATING] > 0)
     {
-        if ((Player.hp < Player.maxhp) && (Player.mana > 0))
+        if ((Player.hp < Player.maxhp) && (player_get_mana() > 0))
         {
             Player.hp++;
-            Player.mana--;
+            player_set_mana(player_get_mana() - 1);
             dataprint();
         }
 
@@ -722,7 +722,7 @@ void gain_level(void)
         Player.maxmana = calcmana();
         /* If the character was given a bonus, let him keep it.  Otherwise
          * recharge him. */
-        Player.mana = max(Player.mana, Player.maxmana); /* end fix 12/30/98 */
+        player_set_mana(max(player_get_mana(), Player.maxmana)); /* end fix 12/30/98 */
         morewait();
     }
 

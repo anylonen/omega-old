@@ -56,7 +56,7 @@ void indoors_random_event(void)
             print3("You catch your second wind....");
             Player.maxhp++;
             Player.hp = max(Player.hp, Player.maxhp);
-            Player.mana = max(Player.mana, calcmana());
+            player_set_mana(max(player_get_mana(), calcmana()));
             morewait();
             break;
 
@@ -322,7 +322,8 @@ void outdoors_random_event(void)
                 morewait();
                 Player.maxpow += 5;
                 Player.pow += 5;
-                Player.mana = Player.maxmana = calcmana() * 5;
+                player_set_mana(calcmana() * 5);
+                Player.maxmana = calcmana() * 5;
                 mprint("You also feel weaker. Paradoxical, no?");
                 morewait();
                 Player.con -= 5;
@@ -340,7 +341,7 @@ void outdoors_random_event(void)
                 dispel(-1);
                 dispel(-1);
                 Player.pow -= 10;
-                Player.mana = 0;
+                player_set_mana(0);
             }
             else if (num < 60)
             {

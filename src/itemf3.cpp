@@ -9,14 +9,14 @@
 /* amulet of the planes */
 void i_planes(pob o)
 {
-    if (Player.mana < 1)
+    if (player_get_mana() < 1)
     {
         print1("The amulet spits some multicolored sparks.");
     }
     else
     {
         print1("You focus mana into the amulet....");
-        Player.mana = max(0, Player.mana - 100);
+        player_set_mana(max(0, player_get_mana() - 100));
         dataprint();
         morewait();
         strategic_teleport(1);
@@ -26,7 +26,7 @@ void i_planes(pob o)
 /* amulet of serenity */
 void i_serenity(pob o)
 {
-    if (Player.mana < 1)
+    if (player_get_mana() < 1)
     {
         print1("The amulet emits a dull ring.");
     }
@@ -34,7 +34,7 @@ void i_serenity(pob o)
     else
     {
         print1("You focus your will with the amulet....");
-        Player.mana = max(0, Player.mana - 10);
+        player_set_mana(max(0, player_get_mana() - 10));
         Player.maxhp -= 1;
         Player.hp = Player.maxhp;
         dataprint();
@@ -273,7 +273,7 @@ void i_symbol(pob o)
                 dispose_lost_objects(Player.possessions[i]->number,
                                      Player.possessions[i]);
 
-        Player.mana = 0;
+        player_set_mana(0);
         dataprint();
     }
     else if ( (SymbolUseDay == day() ) && (SymbolUseHour == hour()))
@@ -291,7 +291,7 @@ void i_symbol(pob o)
         SymbolUseDay = day();
         cleanse(1);
         heal(10);
-        Player.mana = max(Player.mana, calcmana());
+        player_set_mana(max(player_get_mana(), calcmana()));
         dataprint();
     }
 }
@@ -713,7 +713,7 @@ void i_orbdead(pob o)
 
     print3("A storm of mundanity surounds you!");
     level_drain(Player.level - 1, "a Burnt-out Orb");
-    Player.mana = 0;
+    player_set_mana(0);
     Player.pow -= 10;
 }
 

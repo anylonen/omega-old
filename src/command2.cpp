@@ -659,8 +659,8 @@ void magic(void)
                 drain = drain * 2;
             }
 
-            if (drain > Player.mana)
-                if (Lunarity == -1 && Player.mana >= drain / 2)
+            if (drain > player_get_mana())
+                if (Lunarity == -1 && player_get_mana() >= drain / 2)
                 {
                     print3("The contrary moon has made that spell too draining! ");
                 }
@@ -670,7 +670,7 @@ void magic(void)
                 }
             else
             {
-                Player.mana -= drain;
+                player_set_mana(player_get_mana() - drain);
                 cast_spell(index);
             }
         }

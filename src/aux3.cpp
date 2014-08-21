@@ -96,10 +96,10 @@ int magic_resist(int hostile_magic)
             (Player.level / 2 + random_range(20) >
              hostile_magic + random_range(20)))
     {
-        if (Player.mana > hostile_magic * hostile_magic)
+        if (player_get_mana() > hostile_magic * hostile_magic)
         {
             mprint("Thinking fast, you defend youself with a counterspell!");
-            Player.mana -= hostile_magic * hostile_magic;
+            player_set_mana(player_get_mana() - hostile_magic * hostile_magic);
             dataprint();
             return (TRUE);
         }

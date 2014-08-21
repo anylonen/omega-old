@@ -1376,7 +1376,7 @@ void drain(int blessing)
             m->ac += Player.level;
             m->level++;
             mprint("You feel weaker...");
-            Player.mana = min(0, Player.level * Player.level);
+            player_set_mana(min(0, Player.level * Player.level));
             level_drain(m->level, "negative energy conflict");
         }
     }

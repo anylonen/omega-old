@@ -388,7 +388,7 @@ void s_ritual(void)
                             {
                                 mprint("You feel Doomed.");
                                 Player.hp = 1;
-                                Player.mana = 0;
+                                player_set_mana(0);
                                 Player.xp = 0;
                             }
                             else

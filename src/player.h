@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include <lua.hpp>
+#include <string>
 #include "object.h"
 #include "monk.h"
 
@@ -162,6 +163,7 @@ struct player
     struct object* pack[MAXPACK];
     int packptr;
 };
+long calcmana();
 
 void player_regenerate_hp();
 void player_regenerate_mana();
@@ -191,6 +193,10 @@ const int player_get_level();
 void player_set_level(const int amount);
 int lua_get_player_level(lua_State* L);
 int lua_set_player_level(lua_State* L);
+
+const int player_get_status_id(std::string status_name);
+void player_set_status(std::string status_name, const int value);
+const int player_get_status(std::string);
 
 void register_lua_player_functions();
 #endif

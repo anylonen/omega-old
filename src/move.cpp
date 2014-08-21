@@ -90,7 +90,7 @@ void l_chaos(void)
             print2("You achieve oneness of Chaos....");
         }
 
-        Player.mana = max(Player.mana, calcmana());
+        player_set_mana(max(player_get_mana(), calcmana()));
         Player.hp = max(Player.hp, Player.maxhp);
     }
     else if (onewithchaos) /* adept that gets amnesia from chaos storm */
@@ -474,7 +474,7 @@ void l_magic_pool(void)
         print1("Wow! A pool of azoth!");
         heal(10);
         cleanse(1);
-        Player.mana = calcmana() * 3;
+        player_set_mana(calcmana() * 3);
         Player.str = (Player.maxstr++) * 3;
     }
 
@@ -1159,7 +1159,7 @@ void l_throne(void)
             }
 
             Player.pow = 3;
-            Player.mana = 0;
+            player_set_mana(0);
             Player.hp = 1;
             dispel(-1);
             morewait();
@@ -1435,7 +1435,7 @@ void l_voidstone(void)
     {
         print1("You feel negated.");
         morewait();
-        Player.mana = 0;
+        player_set_mana(0);
         toggle_item_use(TRUE);
 
         for (i = 0; i < NUMSTATI; i++)
