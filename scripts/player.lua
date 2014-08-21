@@ -46,6 +46,6 @@ function player_regenerate_mana()
 end
 
 function player_calculate_mana()
-    local amount = player_get_power() * player_get_level() + 1
+    local amount = player_get_power() * (player_get_level() + 1)
     return amount
 end
