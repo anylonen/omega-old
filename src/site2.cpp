@@ -16,7 +16,7 @@ void l_condo(void)
         response = cinema_interact
                    ("rp", "Rampart Arms. Weekly Condo Rentals and Purchases",
                     "Which are you interested in [r,p, or ESCAPE] ",
-                    NULL);
+                    "");
 
         if (response == 'p')
         {
@@ -1255,7 +1255,7 @@ void l_safe(void)
     response = cinema_interact("pfqi",
                                "You have discovered a safe!",
                                "Pick the lock [p], Force the door [f], or ignore [ESCAPE]",
-                               NULL);
+                               "");
 
     if (response == 'p')
     {

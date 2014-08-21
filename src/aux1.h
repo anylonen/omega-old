@@ -1,14 +1,17 @@
 #ifndef AUX1_H
 #define AUX1_H
 
+#include <string>
 #include "monster.h"
 #include "object.h"
 
 /* aux1.c functions */
 
+using namespace std;
+
 char* levelname( int );
 char* mstatus_string( struct monster* );
-char* trapid( int );
+string trapid( int );
 int getdir( void );
 int goberserk( void );
 int p_country_moveable( int, int );
@@ -20,8 +23,8 @@ void describe_player( void );
 void fight_monster( struct monster* );
 void foodcheck( void );
 void gain_experience( int );
-void p_damage( int, int, char* );
-void p_death( char* );
+void p_damage( int, int, string message);
+void p_death(string message);
 void roomcheck( void );
 void searchat( int, int );
 void setspot( int*, int* );

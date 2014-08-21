@@ -1,10 +1,13 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include <string>
 #include "monster.h"
 #include "object.h"
 
 /* item.c functions */
+
+using namespace std;
 
 void shuffle( int [], int );
 char* bootname( int );

@@ -1,11 +1,14 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
+#include <string>
 #include "monster.h"
 #include "object.h"
 #include "symbol.h"
 
 /* inv.c functions */
+
+using namespace std;
 
 void do_inventory_control( void );
 int  key_to_index( signed char );
@@ -22,7 +25,7 @@ int get_inventory_slot( void );
 int get_item_number( pob );
 int get_to_pack( pob );
 int getitem( Symbol );
-int getitem_prompt (char*, Symbol);
+int getitem_prompt (string message, Symbol);
 int item_useable( pob, int );
 int objequal( struct object*, struct object* );
 int slottable( pob, int );

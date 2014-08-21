@@ -462,7 +462,7 @@ void erase_level(void)
 }
 
 /* direct print to first msg line */
-void print1(std::string message)
+void print1(string message)
 {
     const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
@@ -475,7 +475,7 @@ void print1(std::string message)
 }
 
 /* for run on-messages -- print1 clears first.... */
-void nprint1(std::string message)
+void nprint1(string message)
 {
     const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
@@ -489,7 +489,7 @@ void nprint1(std::string message)
 }
 
 /* direct print to second msg line */
-void print2(std::string message)
+void print2(string message)
 {
     const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
@@ -502,7 +502,7 @@ void print2(std::string message)
 }
 
 /* for run on-messages -- print2 clears first.... */
-void nprint2(std::string message)
+void nprint2(string message)
 {
     const char* s = message.c_str();
     if (! gamestatusp(SUPPRESS_PRINTING))
@@ -520,7 +520,7 @@ void nprint2(std::string message)
 /* WDT: it's also typically used for messages intended to persist a while.
  * Thus I'm having print3 save its input in a global variable which other
  * things can use. */
-void print3(std::string message)
+void print3(string message)
 {
     const char* s = message.c_str();
     if (!gamestatusp(SUPPRESS_PRINTING))
@@ -534,7 +534,7 @@ void print3(std::string message)
 }
 
 /* for run on-messages -- print3 clears first.... */
-void nprint3(std::string message)
+void nprint3(string message)
 {
     const char* s = message.c_str();
     if (!gamestatusp(SUPPRESS_PRINTING))
@@ -550,7 +550,7 @@ void nprint3(std::string message)
 
 /* prints wherever cursor is in window, but checks to see if
 it should morewait and clear window */
-void mprint(std::string message)
+void mprint(string message)
 {
     const char* s = message.c_str();
     int x, y;
@@ -712,61 +712,61 @@ void initgraf(void)
 
 /* cinema_display: pop up a window out of the way of the screen and fill it
  * with 3 lines of text.  The lines may be NULL pointers. */
-void cinema_display (char* line1, char* line2, char* line3)
+void cinema_display (string line1, string line2, string line3)
 {
     werase(Cinema);
 
-    if (line1)
+    if (line1.length() > 0)
     {
-        if (line2)
+        if (line2.length() > 0)
         {
-            if (line3)
+            if (line3.length() > 0)
             {
-                mvwprintw(Cinema, 0, 0, line1);
-                mvwprintw(Cinema, 1, 0, line2);
-                mvwprintw(Cinema, 2, 0, line3);
+                mvwprintw(Cinema, 0, 0, line1.c_str());
+                mvwprintw(Cinema, 1, 0, line2.c_str());
+                mvwprintw(Cinema, 2, 0, line3.c_str());
             }
             else
             {
                 mvwprintw(Cinema, 2, 0, screenLine3);
-                mvwprintw(Cinema, 0, 0, line1);
-                mvwprintw(Cinema, 1, 0, line2);
+                mvwprintw(Cinema, 0, 0, line1.c_str());
+                mvwprintw(Cinema, 1, 0, line2.c_str());
             }
         }
         else
         {
-            if (line3)
+            if (line3.length() > 0)
             {
-                mvwprintw(Cinema, 0, 0, line1);
-                mvwprintw(Cinema, 2, 0, line3);
+                mvwprintw(Cinema, 0, 0, line1.c_str());
+                mvwprintw(Cinema, 2, 0, line3.c_str());
             }
             else
             {
                 mvwprintw(Cinema, 2, 0, screenLine3);
-                mvwprintw(Cinema, 0, 0, line1);
+                mvwprintw(Cinema, 0, 0, line1.c_str());
             }
         }
     }
     else
     {
-        if (line2)
+        if (line2.length() > 0)
         {
-            if (line3)
+            if (line3.length() > 0)
             {
-                mvwprintw(Cinema, 1, 0, line2);
-                mvwprintw(Cinema, 2, 0, line3);
+                mvwprintw(Cinema, 1, 0, line2.c_str());
+                mvwprintw(Cinema, 2, 0, line3.c_str());
             }
             else
             {
                 mvwprintw(Cinema, 2, 0, screenLine3);
-                mvwprintw(Cinema, 1, 0, line2);
+                mvwprintw(Cinema, 1, 0, line2.c_str());
             }
         }
         else
         {
-            if (line3)
+            if (line3.length() > 0)
             {
-                mvwprintw(Cinema, 2, 0, line3);
+                mvwprintw(Cinema, 2, 0, line3.c_str());
             }
             else
             {
@@ -798,9 +798,9 @@ static void cinema_blank_line (int line)
     wrefresh(Cinema);
 }
 
-void cinema_print_line (int line, char* text)
+void cinema_print_line (int line, string message)
 {
-    mvwprintw(Cinema, line, 0, text);
+    mvwprintw(Cinema, line, 0, message.c_str());
     wrefresh(Cinema);
 }
 
@@ -846,10 +846,10 @@ int cinema_getch (void)
  * Return Value:
  *   -1 if ESC was pressed; otherwise the character chosen.
  */
-int cinema_interact (char* choices, char* line1, char* line2, char* line3)
+int cinema_interact(string choices, string line1, string line2, string line3)
 {
     int response;
-    assert(choices && strlen(choices) > 0);
+    assert(strlen(choices.c_str()) > 0);
 
     while (1)
     {
@@ -861,12 +861,12 @@ int cinema_interact (char* choices, char* line1, char* line2, char* line3)
             break;
         }
 
-        if (strchr(choices, response))
+        if (strchr(choices.c_str(), response))
         {
             break;
         }
 
-        if (!line3)
+        if (line3.length() == 0)
         {
             line3 = "What? Try again!";
         }
@@ -876,11 +876,11 @@ int cinema_interact (char* choices, char* line1, char* line2, char* line3)
     return response;
 }
 
-int cinema_interact_line (int line, char* choices, char* text)
+int cinema_interact_line (int line, string choices, string text)
 {
     int response;
     assert(0 == line || 1 == line);
-    assert(choices && strlen(choices) > 0);
+    assert(choices.length() > 0);
 
     while (1)
     {
@@ -892,7 +892,7 @@ int cinema_interact_line (int line, char* choices, char* text)
             break;
         }
 
-        if (strchr(choices, response))
+        if (strchr(choices.c_str(), response))
         {
             break;
         }
@@ -903,12 +903,12 @@ int cinema_interact_line (int line, char* choices, char* text)
     return response;
 }
 
-int cinema_ynq_line (int line, char* prompt)
+int cinema_ynq_line (int line, string prompt)
 {
     return cinema_interact_line(line, "ynqYNQ", prompt);
 }
 
-int cinema_getnum_line (int line, char* prompt)
+int cinema_getnum_line (int line, string prompt)
 {
     int num;
     assert(0 == line || 1 == line);
@@ -918,9 +918,9 @@ int cinema_getnum_line (int line, char* prompt)
     return num;
 }
 
-int cinema_confirm (char* action_description)
+int cinema_confirm (string action_description)
 {
-    char* msg;
+    string msg;
 
     switch (random_range(4))
     {
@@ -941,15 +941,15 @@ int cinema_confirm (char* action_description)
             break;
     }
 
-    return cinema_interact("ynqYNQ", action_description, msg, NULL);
+    return cinema_interact("ynqYNQ", action_description, msg, "");
 }
 
-int cinema_ynq (char* action_description)
+int cinema_ynq (string action_description)
 {
-    return cinema_interact("ynqYNQ", action_description, NULL, NULL);
+    return cinema_interact("ynqYNQ", action_description, "", "");
 }
 
-void cinema_scene (char* line1, char* line2, char* line3)
+void cinema_scene (string line1, string line2, string line3)
 {
     cinema_display(line1, line2, line3);
     morewait();
@@ -1587,7 +1587,7 @@ void menuspellprint(int i)
     wprintw(Menuw, "(%d)\n", Spells[i].powerdrain);
 }
 
-void menuprint(std::string message)
+void menuprint(string message)
 {
     const char* s = message.c_str(); 
     int x, y;
@@ -1865,7 +1865,7 @@ static long input_number (WINDOW* w)
 /* reads a positive number up to 999999 */
 /* WDT: now asks for the number, and receives it through the cinema
  * interface.  Returns ABORT (-1) if aborted. */
-long parsenum(char* message)
+long parsenum(string message)
 {
     int number[8];
     int place = -1;
@@ -1873,7 +1873,7 @@ long parsenum(char* message)
     long num = 0;
     char byte = ' ';
     int entering_digits = TRUE;
-    cinema_display(message, "enter a number or ESC: ", NULL);
+    cinema_display(message, "enter a number or ESC: ", "");
 
     while (entering_digits)
     {
@@ -1935,7 +1935,7 @@ void maddch(char c)
     wrefresh(Msgw);
 }
 
-void display_death(char* source)
+void display_death(string message)
 {
     clear();
     touchwin(stdscr);
@@ -1944,7 +1944,7 @@ void display_death(char* source)
     printw(Player.name);
     printw(" (%ld points)", calc_points());
     strcpy(Str4, "Killed by ");
-    strcat(Str4, source);
+    strcat(Str4, message.c_str());
     printw("\n");
     printw(Str4);
     printw(".");

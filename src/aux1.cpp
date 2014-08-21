@@ -2,8 +2,11 @@
 /* aux1.c */
 /* auxiliary functions for those in com.c, also see aux2.c and aux3.c */
 
+#include <string>
 #include "aux1.h"
 #include "glob.h"
+
+using namespace std;
 
 /* check to see if too much tunneling has been done in this level */
 void tunnelcheck(void)
@@ -732,7 +735,7 @@ int damage_item(pob o)
 }
 
 /* do dmg points of damage of type dtype, from source fromstring */
-void p_damage(int dmg, int dtype, char* fromstring)
+void p_damage(int dmg, int dtype, string message)
 {
     if (gamestatusp(FAST_MOVE))
     {
@@ -753,7 +756,7 @@ void p_damage(int dmg, int dtype, char* fromstring)
 
         if (Player.hp < 1)
         {
-            p_death(fromstring);
+            p_death(message);
         }
     }
     else
@@ -765,12 +768,12 @@ void p_damage(int dmg, int dtype, char* fromstring)
 }
 
 /* game over, you lose! */
-void p_death(char* fromstring)
+void p_death(string message)
 {
     Player.hp = -1;
     print3("You died!");
     morewait();
-    display_death(fromstring);
+    display_death(message);
     player_dump();
 #ifdef SAVE_LEVELS
     kill_all_levels();
@@ -1047,7 +1050,7 @@ int goberserk(void)
 }
 
 /* identifies a trap for examine() by its aux value */
-char* trapid(int trapno)
+string trapid(int trapno)
 {
     switch (trapno)
     {

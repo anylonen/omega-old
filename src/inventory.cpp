@@ -727,7 +727,7 @@ int getitem (Symbol itype)
     return getitem_prompt(0, itype);
 }
 
-int getitem_prompt (char* prompt, Symbol itype)
+int getitem_prompt(string message, Symbol itype)
 {
     int key;
     char* line3;
@@ -771,9 +771,9 @@ int getitem_prompt (char* prompt, Symbol itype)
     /* build prompt... */
     selectstr[0] = 0;
 
-    if (prompt)
+    if (message.length() > 0)
     {
-        strcpy(selectstr, prompt);
+        strcpy(selectstr, message.c_str());
     }
 
     strcat(selectstr, "Select an item. (");
@@ -1034,7 +1034,7 @@ void use_pack_item(int response, int slot)
 int aux_display_pack(int start_item, int slot)
 {
     int i = start_item, items;
-    char* depth_string;
+    string depth_string;
     menuclear();
 #if 0
 
@@ -1082,7 +1082,7 @@ int aux_display_pack(int start_item, int slot)
                     depth_string = "  ";
                 }
 
-                sprintf(Str1, "  %c: %s %s\n", i + 'a', depth_string,
+                sprintf(Str1, "  %c: %s %s\n", i + 'a', depth_string.c_str(),
                         itemid(Player.pack[i]));
 
                 if (items == 0)

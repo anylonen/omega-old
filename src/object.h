@@ -1,7 +1,10 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <string>
 #include "symbol.h"
+
+using namespace std;
 
 /* number of slots in inventory. Cannot be changed without work */
 #define MAXITEMS 16
